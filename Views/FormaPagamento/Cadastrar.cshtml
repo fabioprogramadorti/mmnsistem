@@ -1,0 +1,79 @@
+﻿@model MultiSis.Domain.FormaPagamento
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Cadastar forma de pagamento</h1>
+</div>
+
+@using (Html.BeginForm()) {
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nome)
+            @Html.ValidationMessageFor(model => model.Nome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Ativo)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Ativo, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(), " -- selecione --", null)
+            @Html.ValidationMessageFor(model => model.Ativo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.URLIntegracao, "URL de integração")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.URLIntegracao)
+            @Html.ValidationMessageFor(model => model.URLIntegracao)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Login)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Login)
+            @Html.ValidationMessageFor(model => model.Login)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Senha)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Senha)
+            @Html.ValidationMessageFor(model => model.Senha)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CampoExtra1, "Campo extra 1")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CampoExtra1)
+            @Html.ValidationMessageFor(model => model.CampoExtra1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CampoExtra2, "Campo extra 2")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CampoExtra2)
+            @Html.ValidationMessageFor(model => model.CampoExtra2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CampoExtra3, "Campo extra 3")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CampoExtra3)
+            @Html.ValidationMessageFor(model => model.CampoExtra3)
+        </div>
+
+        <div class="clear label">
+            <span>
+                <button class="btn btn-success" id="btnsalvar" type="submit" value="Salvar">Salvar</button>
+                <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+            </span>
+        </div>
+}

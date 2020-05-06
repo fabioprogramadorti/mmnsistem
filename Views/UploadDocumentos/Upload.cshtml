@@ -1,0 +1,39 @@
+﻿@model MultiSis.Domain.ArquivoDownload
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Upload de arquivo</h1>
+</div>
+
+@using (Html.BeginForm("upload", "uploaddocumentos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="alert alert-info">
+            <p><i class="fa fa-info-circle"></i> O tamanho máximo permitido para o arquivo é de 30Mb</p>
+            <p><i class="fa fa-info-circle"></i> Os tipos de arquivo aceitos são: '.png', '.jpeg', '.jpg', '.mp4', '.doc', '.docx', '.xls', '.xlsx', '.pdf', '.ppt', '.pptx', '.pps', '.ppsx'</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Titulo, "Título")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Titulo, new { maxlength = 30 })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Arquivo)
+        </div>
+        <div class="editor-field">
+            <input type="file" name="file" id="fale" />
+        </div>
+    </div>
+
+    <div class="label">
+        <span>
+            <button class="btn btn-success" id="btnSalvar" type="submit" value="Salvar" title="Salvar">Salvar</button>
+            <button class="btn btn-default" onclick="javascript:window.location='/'; return false;" value="Cancelar" title="Cancelar">Cancelar</button>
+        </span>
+    </div>
+
+}

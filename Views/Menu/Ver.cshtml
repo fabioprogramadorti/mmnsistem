@@ -1,0 +1,36 @@
+﻿@model MultiSis.Domain.Menu
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Menu</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Menu2.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Menu2.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OrdemMenu)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OrdemMenu)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

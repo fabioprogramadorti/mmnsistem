@@ -1,0 +1,100 @@
+﻿@model MultiSis.Domain.Conta
+<script src="~/Scripts/View/Conta/Conta.js"></script>
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Alteração Conta</h1>
+</div>
+
+@if (ViewBag.Mensagem != null)
+{
+    <script>
+        $(function () {
+            MensagemOK('@ViewBag.Mensagem');
+
+
+
+        });
+    </script>
+}
+@using (Html.BeginForm())
+{
+
+    <div id="tabs">
+        <ul>
+            <li><a href="#detalhe">Detalhes De Conta</a></li>
+        </ul>
+        <div id="detalhe">
+            <p>
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.IdPessoa)
+                @Html.HiddenFor(m => m.Guid)
+                @Html.HiddenFor(m => m.DataCadastro)
+                @Html.HiddenFor(m => m.DataAtivacao)
+
+                <div class="label">
+                    @Html.LabelFor(model => model.Identificacao, "ID da conta")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.TextBoxFor(model => model.Identificacao)
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.IdPlanoNegocio, "Plano")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.DropDownList("IdPlanoNegocio", "-- selecione --")
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.ContaPadrao, "Conta Padrão")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.DropDownListFor(x => x.ContaPadrao, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.ContaPadrao), "-- selecione --", null)
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.DataValidade, "Data de Vencimento")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.TextBoxFor(model => model.DataValidade)
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.DataAtivacao, "Data de Ativação")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.TextBoxFor(model => model.DataAtivacao)
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.DataBloqueio, "Data de Bloqueio")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.TextBoxFor(model => model.DataBloqueio)
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.DataCancelamento, "Data de Cancelamento")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.TextBoxFor(model => model.DataCancelamento)
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.Observacao, "Observação")
+                </div>
+                <div class="text">
+                    @Html.TextBoxFor(model => model.Observacao)
+                </div>
+            </p>
+        </div>
+        <br />
+        <div class="clear" style="margin-top: 10px;">
+
+            <span>
+                <button class="btn btn-success" id="btnAlterar" type="submit" value="Salvar" title="Salvar">Salvar</button>
+                <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+            </span>
+
+        </div>
+    </div>
+}

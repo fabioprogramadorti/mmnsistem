@@ -1,0 +1,65 @@
+﻿@model MSX.Informatica.Domain.Models.TELA_TB
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>TELA_TB</legend>
+
+    <div class="display-label">ID_TELA</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ID_TELA)
+    </div>
+
+    <div class="display-label">MENU_TB</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MENU_TB.NM_MENU)
+    </div>
+
+    <div class="display-label">NM_TELA</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NM_TELA)
+    </div>
+
+    <div class="display-label">NM_CONTROLE</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NM_CONTROLE)
+    </div>
+
+    <div class="display-label">NM_FUNCAO</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NM_FUNCAO)
+    </div>
+
+    <div class="display-label">NM_TELA_MENU</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NM_TELA_MENU)
+    </div>
+
+    <div class="display-label">NM_URL</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NM_URL)
+    </div>
+
+    <div class="display-label">NM_URL_IMAGEM</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NM_URL_IMAGEM)
+    </div>
+
+    <div class="display-label">NM_TOOLTIP</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NM_TOOLTIP)
+    </div>
+
+    <div class="display-label">FL_ATIVO</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FL_ATIVO)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

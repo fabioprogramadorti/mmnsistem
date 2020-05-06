@@ -1,0 +1,417 @@
+﻿@model MultiSis.Administrativo.Models.PlanoNegocioModel
+@{
+    MultiSis.Domain.Configuracoes config = new MultiSis.Domain.Configuracoes().GetConfiguracoes();
+}
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Alterar plano de negócio</h1>
+</div>
+
+@using (Html.BeginForm("consultar", "planonegocio", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Guid)
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Dados do plano
+            </div>
+            <div class="panel-body">
+                <p>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nome)
+                            @Html.EditorFor(model => model.Nome)
+                            @Html.ValidationMessageFor(model => model.Nome)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Descricao, "Descrição")
+                            @Html.EditorFor(model => model.Descricao)
+                            @Html.ValidationMessageFor(model => model.Descricao)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ValorAdesao, "Valor de adesão")
+                            @Html.TextBoxFor(model => model.ValorAdesao, new { @class = "moeda" })
+                            @Html.ValidationMessageFor(model => model.ValorAdesao)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Imagem)
+                            @Html.DropDownList("Imagem", "-- selecione -- ")
+                            @Html.ValidationMessageFor(model => model.Imagem)
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Dados de rede
+            </div>
+            <div class="panel-body">
+                <p>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PontosRede, "Pontos rede")
+                            @Html.TextBoxFor(model => model.PontosRede, new { @class = "numero" })
+                            @Html.ValidationMessageFor(model => model.PontosRede)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.QuantidadeCotas, "Número cotas")
+                            @Html.TextBoxFor(model => model.QuantidadeCotas, new { @class = "numero", maxlength = 3 })
+                            @Html.ValidationMessageFor(model => model.QuantidadeCotas)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NiveisPagamentoBonus, "Níveis recebimento")
+                            @Html.TextBoxFor(model => model.NiveisPagamentoBonus, new { @class = "numero" })
+                            @Html.ValidationMessageFor(model => model.NiveisPagamentoBonus)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LimiteBinarioDia, "Limite binário")
+                            @Html.TextBoxFor(model => model.LimiteBinarioDia, new { @class = "moeda" })
+                            @Html.ValidationMessageFor(model => model.LimiteBinarioDia)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PorcentagemGanhoBinario, "Porcentagem de ganho do binário")
+                            @Html.TextBoxFor(model => model.PorcentagemGanhoBinario, new { @class = "moeda" })
+                            @Html.ValidationMessageFor(model => model.PorcentagemGanhoBinario)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.QualificaBinario, "Qualifica binário")
+                            @Html.DropDownListFor(model => model.QualificaBinario, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.QualificaBinario)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PorcentagemLimiteGanhoInvestimento, "Porcentagem de ganho sobre cotas")
+                            @Html.TextBoxFor(model => model.PorcentagemLimiteGanhoInvestimento, new { @class = "moeda" })
+                            @Html.ValidationMessageFor(model => model.PorcentagemGanhoBinario)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LimiteGanhoIndicacaoDireta, "Limite de ganho indicação direta")
+                            @Html.TextBoxFor(model => model.LimiteGanhoIndicacaoDireta, new { @class = "moeda" })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LimiteGanhoIndicacaoIndireta, "Limite de ganho indicação indireta")
+                            @Html.TextBoxFor(model => model.LimiteGanhoIndicacaoIndireta, new { @class = "moeda" })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RecebeIndicacaoDireta, "Recebe indicação direta")
+                            @Html.DropDownListFor(model => model.RecebeIndicacaoDireta, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(), "-- selecione --")
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RecebeIndicacaoIndireta, "Recebe indicação indireta")
+                            @Html.DropDownListFor(model => model.RecebeIndicacaoIndireta, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(), "-- selecione --")
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Dados gerais
+            </div>
+            <div class="panel-body">
+                <p>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdPlanoNegocioEquivalente, "Este plano equivale ao plano")
+                            @Html.DropDownList("IdPlanoNegocioEquivalente", "-- selecione -- ")
+                            @Html.ValidationMessageFor(model => model.IdPlanoNegocioEquivalente)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DataValidade, "Validade do plano")
+                            @Html.TextBoxFor(model => model.DataValidade, new { @class = "date" })
+                            @Html.ValidationMessageFor(model => model.DataValidade)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.VendeNoSite, "Vende no site")
+                            @Html.DropDownListFor(model => model.VendeNoSite, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.VendeNoSite)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PlanoCarreira, "É apenas plano de carreira")
+                            @Html.DropDownListFor(model => model.PlanoCarreira, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.PlanoCarreira)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Plano, "É plano negócio")
+                            @Html.DropDownListFor(model => model.Plano, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Plano)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CompraCota, "Pode comprar cota")
+                            @Html.DropDownListFor(model => model.CompraCota, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(), "-- selecione --")
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AdesaoObrigatoria, "Adesão obrigatória")
+                            @Html.DropDownListFor(model => model.AdesaoObrigatoria, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(), "-- selecione --", new { title = "Marque esta opção com 'SIM' se este plano for de adesão obrigatória, ou seja, para que seja adquirido qualquer outro plano este plano precisa ter sido adquirido primeiramente ou junto com o pacote de interesse" })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ApenasPrimeiraCompra, "Só pode ser comprado na ativação")
+                            @Html.DropDownListFor(model => model.ApenasPrimeiraCompra, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.ApenasPrimeiraCompra)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Ativo, "Vigente")
+                            @Html.DropDownListFor(model => model.Ativo, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Ativo)
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Formas de pagamento aceitas para o plano
+            </div>
+            <div class="panel-body">
+                <p>
+                    <table class="table table-striped table-bordered table-hover">
+                        <tr>
+                            <th></th>
+                            <th style="text-align: left">
+                                Forma pagamento
+                            </th>
+                        </tr>
+                        @for (int i = 0; i < Model.FormasPagamento.Count; i++)
+                        {
+                            <tr>
+                                <td style="text-align: center; width: 50px">
+                                    @Html.EditorFor(modelItem => modelItem.FormasPagamento[i].Selecionado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => modelItem.FormasPagamento[i].Nome)
+                                    @Html.HiddenFor(modelItem => modelItem.FormasPagamento[i].Id)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Bonificação de ativação
+            </div>
+            <div class="panel-body">
+                <p>
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            @Html.Label("Valor do bônus indicação direta")
+                            @Html.TextBoxFor(m => m.ValorBonusIndicacaoDireta)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tr>
+                                    <th>Nível</th>
+                                    <th style="text-align: left">
+                                        Valor do bônus de indicação indireta
+                                    </th>
+                                </tr>
+                                @for (byte i = 0; i < config.MaximoNivelLinear; i++)
+                                {
+                                    <tr>
+                                        <td style="text-align: center; width: 50px">
+                                            @Html.DisplayFor(m => m.PlanosNegocioNivelBonus[i].NumeroNivel)
+                                            @Html.HiddenFor(m => m.PlanosNegocioNivelBonus[i].NumeroNivel)
+                                            @Html.HiddenFor(m => m.PlanosNegocioNivelBonus[i].IdPlanoNegocio)
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.PlanosNegocioNivelBonus[i].Valor, new { @class = "moeda" })
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Valores de upgrade por plano
+            </div>
+            <div class="panel-body">
+                <p>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tr>
+                                    <th>Plano atual</th>
+                                    <th>Plano novo</th>
+                                    <th style="text-align: left">
+                                        Valor upgrade
+                                    </th>
+                                    <th style="text-align: left">
+                                        Pontos
+                                    </th>
+                                    <th style="text-align: left">
+                                        Cotas
+                                    </th>
+                                </tr>
+                                @for (int i = 0; i < Model.ValoresUpgradePorPlano.Count; i++)
+                                {
+                                    @Html.HiddenFor(m => m.ValoresUpgradePorPlano[i].IdPlanoNegocioAtual)
+                                    @Html.HiddenFor(m => m.ValoresUpgradePorPlano[i].IdPlanoNegocioFuturo)
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => m.ValoresUpgradePorPlano[i].PlanoNegocio.Nome)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => m.ValoresUpgradePorPlano[i].PlanoNegocio1.Nome)
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.ValoresUpgradePorPlano[i].ValorUpgrade, new { @class = "moeda" })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.ValoresUpgradePorPlano[i].PontosRede, new { @class = "numero" })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.ValoresUpgradePorPlano[i].Cotas, new { @class = "numero" })
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Bonificação de upgrade
+            </div>
+            <div class="panel-body">
+                <p>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <table class="table table-striped table-bordered table-hover">
+                                <tr>
+                                    <th>Plano atual</th>
+                                    <th>Plano novo</th>
+                                    <th style="text-align: left">
+                                        Indicação direta
+                                    </th>
+                                    <th style="text-align: left">
+                                        Indicação indireta
+                                    </th>
+                                </tr>
+                                @for (int i = 0; i < Model.ValoresIndicacaoDiretaIndiretaUpgrade.Count; i++)
+                                {
+                                    @Html.HiddenFor(m => m.ValoresIndicacaoDiretaIndiretaUpgrade[i].IdPlanoNegocioAtual)
+                                    @Html.HiddenFor(m => m.ValoresIndicacaoDiretaIndiretaUpgrade[i].IdPlanoNegocioFuturo)
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(m => m.ValoresIndicacaoDiretaIndiretaUpgrade[i].PlanoNegocio.Nome)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(m => m.ValoresIndicacaoDiretaIndiretaUpgrade[i].PlanoNegocio1.Nome)
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.ValoresIndicacaoDiretaIndiretaUpgrade[i].ValorIndicacaoDireta, new { @class = "moeda" })
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.ValoresIndicacaoDiretaIndiretaUpgrade[i].ValorIndicacaoIndireta, new { @class = "moeda" })
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="clear" style="margin-top: 10px;">
+        <span>
+            <button class="btn btn-success" id="btnAlterar" type="submit" value="Salvar" title="Salvar">Salvar</button>
+            <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+        </span>
+    </div>
+}

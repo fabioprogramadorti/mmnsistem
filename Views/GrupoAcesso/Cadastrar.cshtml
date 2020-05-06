@@ -1,0 +1,29 @@
+﻿@model MultiSis.Domain.GrupoAcesso
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Cadastrar grupo de acesso ao sistema</h1>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#Nome").focus();
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    <div class="label">
+        @Html.LabelFor(model => model.Nome, "Nome do grupo")
+    </div>
+    <div class="text">
+        @Html.EditorFor(model => model.Nome)
+    </div>
+
+    <div class="clear label">
+        <span>
+            <button class="btn btn-success" id="btnsalvar" type="submit" value="Salvar">Salvar</button>
+            <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+        </span>
+    </div>
+    
+}

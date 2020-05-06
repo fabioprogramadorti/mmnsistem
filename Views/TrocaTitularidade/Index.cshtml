@@ -1,0 +1,100 @@
+﻿@model MultiSis.Administrativo.Models.TrocaTitularidadeModel
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Troca de titularidade de conta</h1>
+</div>
+
+<script src="~/Scripts/View/TrocaTitularidade/TrocaTitularidade.js"></script>
+
+@using (Html.BeginForm("index", "trocatitularidade", FormMethod.Post, new { id = "formid",  onsubmit = "return confirm('Confirma a transferência da conta da conta ' + $('#IdentificacaoConta').val() + ' para o novo titular sr(a) ' + $('#NomeNovoTitular').val() + '?');" }))
+{
+    <div id="tabs" style="margin-top: 1.5em;">
+        <ul>
+            <li><a href="#conta">Selecione a conta</a></li>
+            <li><a href="#novo_titular">Selecione o novo titular</a></li>
+            <li><a href="#confirmacao">Confirme as informações</a></li>
+        </ul>
+        <div id="conta">
+            <p>
+                <div style="text-align: left">
+                    <table style="margin-top: 20px;">
+                        <tr>
+                            <td colspan="2">Informe a identificação da conta</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.TextBoxFor(x => x.IdentificacaoConta, new { style = "width: 250px;", autofocus = "true" })</td>
+                            <td><a href="javascript:void(0);" id="btnPesquisarConta">
+                                <img src="~/Image/lupa.png" style="width: 25px;" /></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <div id="conteudo_pagina_conta_pessoa">
+                </div>
+                <div style="display: table; width: 100%">
+                    <div style="float: right;">
+                        <button id="btnProximo1" type="button" class="proxima-aba button_cinza">Próximo ></button>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <div id="novo_titular">
+            <p>
+                <div style="text-align: left">
+                    <table style="margin-top: 20px;">
+                        <tr>
+                            <td colspan="2">Informe o nome do novo titular</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.TextBoxFor(x => x.NomeNovoTitular, new { style = "width: 250px;", autofocus = "true" })</td>
+                            <td><a href="javascript:void(0);" id="btnPesquisarTitular">
+                                <img src="~/Image/lupa.png" style="width: 25px;" /></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <div id="conteudo_pagina_novo_titular">
+                </div>
+                <div style="display: table; width: 100%">
+                    <div style="float: right;">
+                        <button id="btnProximo2" type="button" class="proxima-aba button_cinza">Próximo ></button>
+                    </div>
+                </div>
+            </p>
+        </div>
+        <div id="confirmacao">
+            <p>
+                @Html.HiddenFor(m => m.IdConta)
+                @Html.HiddenFor(m => m.IdPessoaNovoTitular)
+                <div id="confirmacao_conteudo_pagina_conta_pessoa">
+                </div>
+                <div id="confirmacao_conteudo_pagina_novo_titular">
+                </div>
+                <div style="display: table; width: 100%">
+                    <div style="float: right;">
+                        <button id="btnSalvar" type="submit" class="btn btn-success">Confirmar transferência</button>
+                        <button id="btnCancelar" type="button" class="btn btn-default">Cancelar</button>
+                    </div>
+                </div>
+            </p>
+        </div>
+    </div>
+}
+<div id="DialogPartialPesquisaConta" title="Selecione a conta">
+    <div id="conteudo_pesquisa_contatos">
+    </div>
+</div>
+
+<div id="DialogPartialPesquisaPessoa" title="Selecione o novo titular">
+    <div id="conteudo_pesquisa_pessoa">
+    </div>
+</div>
+
+<div id="processando" title="Processando...">
+    <p>
+        Aguarde
+        <img src="@Url.Content("~/Image/loader.gif")" />
+    </p>
+</div>

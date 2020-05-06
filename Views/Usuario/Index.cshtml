@@ -1,0 +1,108 @@
+﻿@model IEnumerable<MultiSis.Domain.UsuarioAdministrativo>
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Usuários cadastrados</h1>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var msg = '@ViewBag.Mensagem';
+        if (msg != "")
+            alert(msg);
+    });
+</script>
+
+<button class="btn btn-success" type="button" title="Cadastrar usuário" onclick="javascript:window.location='/usuario/cadastro'">Cadastrar usuário</button>
+<br />
+<br />
+
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            E-mail
+        </th>
+        <th>
+            Login
+        </th>
+        <th>
+            Bloqueado
+        </th>
+        <th>
+            Ativo
+        </th>
+        <th></th>
+    </tr>
+    @if (Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Login)
+                </td>
+                <td>
+                    @if (item.DataBloqueio != null)
+                {
+                <text>Sim</text>
+                }
+                else
+                {
+                <text>Não</text>
+                }
+                </td>
+                <td>
+                    @if (item.DataDesativacao == null)
+                {
+                <text>Sim</text>
+                }
+                else
+                {
+                <text>Não</text>
+                }
+                </td>
+                <td>
+                    @{
+            var usuarioLogado = new MultiSis.Domain.UsuarioAdministrativo().GetUsuarioLogado();
+                    }
+
+                    @Html.ActionLink("Editar", "alterar", new { id = item.Id })
+                    @if (item.Id != usuarioLogado.Id)
+                {
+                <text> | </text>
+                    if (item.DataBloqueio != null)
+                    {
+                @Html.ActionLink("Desbloquear", "bloquear", new { id = item.Id })}
+                    else
+                    {
+                @Html.ActionLink("Bloquear", "bloquear", new { id = item.Id }, new { onclick = "return MensagemConfirmacao('Deseja realmente bloquear este usuário?', 'usuario/bloquear/?id=" + item.Id + "');" })}
+                <text> | </text>
+                    if (item.DataDesativacao == null)
+                    {
+                @Html.ActionLink("Inativar", "inativar", new { id = item.Id }, new { onclick = "return MensagemConfirmacao('Deseja realmente inativar este usuário?', 'usuario/inativar/?id=" + item.Id + "');" })}
+                    else
+                    {
+                @Html.ActionLink("Ativar", "inativar", new { id = item.Id })}
+                <text> | </text>
+
+                @Html.ActionLink("Resetar Senha", "resetarsenha", new { id = item.Id }, new { onclick = "return MensagemConfirmacao('Deseja realmente resetar a senha deste usuário?', 'usuario/resetarSenha/?id=" + item.Id + "');" });
+                }
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="6" style="text-align:center">Nenhum usuário encontrado</td>
+        </tr>
+    }
+</table>

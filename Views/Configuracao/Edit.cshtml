@@ -1,0 +1,609 @@
+﻿@model MultiSis.Administrativo.Models.ConfiguracoesModel
+
+<script src="~/Scripts/View/Configuracao/Configuracao.js"></script>
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Alterar configuração do sistema</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.IdBanco)
+
+    if (ViewBag.ValidacaoCampo != null)
+    {
+        <div class="alert alert-warning alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            @foreach (string c in (List<string>)ViewBag.ValidacaoCampo)
+            {
+                <p>
+                    @c
+                </p>
+            }
+        </div>
+    }
+
+    <div class="row">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Dados da empresa
+            </div>
+            <div class="panel-body">
+                <p>
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nome, "Nome da empresa")<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.Nome, new { required = "true", maxlength = 50 })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CPFCNPJ, "CPF ou CNPJ")<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.CPFCNPJ, new { required = "true", maxlength = 18 })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, "E-mail")<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.Email, new { required = "true", maxlength = 100 })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EmailGerencial, "E-mail gerencial")<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.EmailGerencial, new { required = "true", maxlength = 100 })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EmailSuporte, "E-mail suporte à rede")<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.EmailSuporte, new { required = "true", maxlength = 100 })
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Endereço
+            </div>
+            <div class="panel-body">
+                <p>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Endereco, "Endereço")<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.Endereco, new { required = "true", maxlength = 250 })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Numero, "Número")<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.Numero, new { required = "true", maxlength = 10 })
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Complemento)
+                            @Html.TextBoxFor(model => model.Complemento, new { maxlength = 50 })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CEP)<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.CEP, new { @class = "numero", maxlength = 8 })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IBGEIdUF, "UF")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownList("IBGEIdUF", "-- selecione --")
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IBGECodigoMunicipio, "Cidade")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownList("IBGECodigoMunicipio", "-- selecione --")
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Bairro)<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.Bairro, new { maxlength = 30 })
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Dados bancários
+            </div>
+            <div class="panel-body">
+                <p>
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                            <div>
+                                <input type="hidden" name="IdBanco" id="IdBanco" />
+                                <label>Banco</label><span class="campo-obrigatorio">*</span>
+                            </div>
+                            <div class="form-group input-group">
+                                @if (Model.Banco != null)
+                                {
+                                    <input type="text" disabled name="Banco" id="Banco" placeholder="Selecione o banco" class="form-control" value="@Model.Banco.Numero - @Model.Banco.Nome">
+                                }
+                                else
+                                {
+                                    <input type="text" disabled name="Banco" id="Banco" placeholder="Selecione o banco" class="form-control">
+                                }
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" onclick="javascript:$('#DialogPesquisaBanco').dialog('open');">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IdTipoConta, "Tipo de conta")
+                            @Html.DropDownList("IdTipoConta", "-- selecione --")
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Agencia, "Agência")
+                            @Html.TextBoxFor(model => model.Agencia, new { @placeholder = "ex. 0001", maxlength = 8 })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NumeroConta, "Conta")
+                            @Html.TextBoxFor(model => model.NumeroConta, new { @placeholder = "ex. 010101-1", maxlength = 16 })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CodigoCedente, "Cedente")
+                            @Html.TextBoxFor(model => model.CodigoCedente, new { maxlength = 20 })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Agencia, "Operação")
+                            @Html.TextBoxFor(model => model.Operacao, new { @placeholder = "ex. 013", maxlength = 4 })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Carteira, "Carteira")
+                            @Html.TextBoxFor(model => model.Carteira, new { maxlength = 5 })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NumeroContratoBanco, "Nº Contrato")
+                            @Html.TextBoxFor(model => model.NumeroContratoBanco, new { maxlength = 20 })
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+                <div class="panel-heading">
+                    Configuração de cota
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Cotas, "Habilitar sistema de cotas")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("Cotas", "-- selecione --")
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Configuração de rede linear
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.RedeLinear, "Aceita rede linear")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("RedeLinear", "-- selecione --")
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MaximoNivelLinear, "Nível máximo rede (acima do patrocinador)")
+                                @Html.TextBoxFor(model => model.MaximoNivelLinear, new { @class = "numero", placeholder = "", maxlength = 2 })
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Configuração de rede binária
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.RedeBinaria, "Aceita rede binária")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("RedeBinaria", "-- selecione --")
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ValorPontoBinario, "Valor ponto binário (R$)")
+                                @Html.TextBoxFor(model => model.ValorPontoBinario, new { @class = "moeda", placeholder = "0,00", maxlength = 5 })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PorcentagemPagamentoSobrePontosBinario, "Porcentagem de pagamento sobre pontos binário")
+                                @Html.TextBoxFor(model => model.PorcentagemPagamentoSobrePontosBinario, new { @class = "moeda", placeholder = "100", maxlength = 3 })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PrimeirasContasBinarioApenasQualifica, "Primeiras contas do binário apenas qualifica")
+                                @Html.DropDownList("PrimeirasContasBinarioApenasQualifica", "-- selecione --")
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Configuração do negócio
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.BonusEquiparacaoEquipe, "Possui bônus de equiparação de equipe")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("BonusEquiparacaoEquipe", "-- selecione --")
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.QuantidadeContasPorCPF, "Número contas por CPF")<span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(model => model.QuantidadeContasPorCPF, new { @required = "true", @class = "numero", placeholder = "", maxlength = 4 })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IdiomaPadrao, "Idioma padrão")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("IdiomaPadrao", "-- selecione --")
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TemaPadrao, "Tema do escritório")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("TemaPadrao", "-- selecione --")
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Moeda, "Moeda padrão")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("Moeda", "-- selecione --")
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PosicionaContaApenasComPedidoPago, "A conta é posicionada apenas com pedido pago")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownListFor(m => m.PosicionaContaApenasComPedidoPago, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.PosicionaContaApenasComPedidoPago), "-- selecione --", null)
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PodePatrocinarSemAindaEstarAtivo, "Conta inativa pode patrocinar")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownListFor(m => m.PodePatrocinarSemAindaEstarAtivo, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.PodePatrocinarSemAindaEstarAtivo), "-- selecione --", null)
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Configuração de transferência de saldo
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TransferenciaSaldoBonus, "Aceita transf. bônus")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("TransferenciaSaldoBonus", "-- selecione --")
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TaxaTransferenciaSaldoBonus, "Valor taxa transferência (R$)")
+                                @Html.TextBoxFor(model => model.TaxaTransferenciaSaldoBonus, new { @class = "moeda", placeholder = "0,00", maxlength = 6 })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ValorMinimoTransferenciaSaldoBonus, "Valor min. tranf. bônus")<span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(model => model.ValorMinimoTransferenciaSaldoBonus, new { @class = "moeda", placeholder = "0,00", maxlength = 6 })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ValorMaximoTransferenciaSaldoBonus, "Valor máx. tranf. bônus")<span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(model => model.ValorMaximoTransferenciaSaldoBonus, new { @class = "moeda", placeholder = "0,00", maxlength = 6 })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TransferenciaSaldoAdicional, "Aceita transf. saldo adic.")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("TransferenciaSaldoAdicional", "-- selecione --")
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TaxaTransferenciaSaldoAdicional, "Valor taxa transf. saldo adic. (R$)")
+                                @Html.TextBoxFor(model => model.TaxaTransferenciaSaldoAdicional, new { @class = "moeda", placeholder = "0,00", maxlength = 6 })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ValorMinimoTransferenciaSaldoAdicional, "Valor min. tranf. saldo adic.")<span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(model => model.ValorMinimoTransferenciaSaldoAdicional, new { @class = "moeda", placeholder = "0,00", maxlength = 6 })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ValorMaximoTransferenciaSaldoAdicional, "Valor máx. tranf. saldo adic.")<span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(model => model.ValorMaximoTransferenciaSaldoAdicional, new { @class = "moeda", placeholder = "0,00", maxlength = 6 })
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Configuração de pagamento
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PagueSeguro, "Aceita PagSeguro")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("PagueSeguro", "-- selecione --")
+                            </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TokenPagueSeguro, "Token PagSeguro")
+                                @Html.TextBoxFor(model => model.TokenPagueSeguro, new { maxlength = 150 })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Boleto, "Aceita boleto")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("Boleto", "-- selecione --")
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.DepositoConta, "Aceita depósito")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("DepositoConta", "-- selecione --")
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Voucher, "Aceita voucher")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("Voucher", "-- selecione -- ")
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Formas de pagamento aceitas pelo sistema
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <table class="table table-striped table-bordered table-hover">
+                            <tr>
+                                <th></th>
+                                <th style="text-align: left">
+                                    Forma pagamento
+                                </th>
+                            </tr>
+                            @for (int i = 0; i < Model.FormasPagamento.Count; i++)
+                            {
+                                <tr>
+                                    <td style="text-align: center; width: 50px">
+                                        @Html.EditorFor(modelItem => modelItem.FormasPagamento[i].Selecionado)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => modelItem.FormasPagamento[i].Nome)
+                                        @Html.HiddenFor(modelItem => modelItem.FormasPagamento[i].Nome)
+                                        @Html.HiddenFor(modelItem => modelItem.FormasPagamento[i].Ativo)
+                                        @Html.HiddenFor(modelItem => modelItem.FormasPagamento[i].CampoExtra1)
+                                        @Html.HiddenFor(modelItem => modelItem.FormasPagamento[i].CampoExtra2)
+                                        @Html.HiddenFor(modelItem => modelItem.FormasPagamento[i].CampoExtra3)
+                                        @Html.HiddenFor(modelItem => modelItem.FormasPagamento[i].Login)
+                                        @Html.HiddenFor(modelItem => modelItem.FormasPagamento[i].Senha)
+                                        @Html.HiddenFor(modelItem => modelItem.FormasPagamento[i].URLIntegracao)
+                                        @Html.HiddenFor(modelItem => modelItem.FormasPagamento[i].Id)
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Configuração de SMTP para envio por e-mail próprio
+                </div>
+                <div class="panel-body">
+                    <p>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SMTPProprio, "Usar SMTP próprio")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("SMTPProprio", "-- selecione -- ")
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EnderecoSMTP, "Endereço SMTP")<span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(model => model.EnderecoSMTP, new { maxlength = 100 })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UsuarioSMTP, "Usuário SMTP")<span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(model => model.UsuarioSMTP, new { maxlength = 100 })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SenhaSMTP, "Senha SMTP")<span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(model => model.SenhaSMTP, new { maxlength = 100 })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PortaSTMP, "Porta SMTP")<span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(model => model.PortaSTMP, new { maxlength = 5 })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.SSLSMTP, "Usar SSL no SMTP")<span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("SSLSMTP", "-- selecione -- ")
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Configuração do e-mail padrão de cadastro
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EmailPadraoCadastro, "E-mail padrão de boas-vindas")<span class="campo-obrigatorio">*</span>
+                                @Html.EditorFor(model => model.EmailPadraoCadastro, new { @required = "true", @class = "", placeholder = "" })
+                            </div>
+                        </div>
+                    </p>
+                </div>
+                <div class="panel-footer">
+                    <p>Tags: [NOME_PESSOA] = Nome do associado / [LOGIN] = E-mail de autenticação / [SENHA] = Senha de acesso </p>
+                </div>
+            </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <button class="btn btn-success" id="btnAlterar" type="submit" value="Salvar" title="Salvar">Salvar</button>
+            <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="DialogPesquisaBanco" title="Selecione o banco" style="z-index: 1001">
+        <div id="conteudo_pesquisa">
+            <table class="table table-striped table-bordered table-hover">
+                <tr>
+                    <th></th>
+                    <th>N° Banco</th>
+                    <th>Banco</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Filtro</td>
+                    <td>
+                        <input type="text" class="search" name="txtNumeroBanco" id="txtNumeroBanco" placeholder="digite o n° do banco" style="width: 100%;" />
+                    </td>
+                    <td>
+                        <input type="text" class="search" name="txtNomeBanco" id="txtNomeBanco" placeholder="digite o nome do banco" style="width: 100%;" />
+                    </td>
+                    <td></td>
+                </tr>
+                <tbody id="tabela_bancos">
+                    @foreach (var i in (List<MultiSis.Domain.Banco>)ViewBag.Bancos)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@i.Numero</td>
+                            <td>@i.Nome</td>
+                            <td>
+                                <button title="Selecionar" type="button" class="btn btn-primary btn-circle" onclick="javascript:selecionaBanco(@i.Id, '@i.Numero', '@i.Nome');"><i class="fa fa-check"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,33 @@
+﻿@model MultiSis.Domain.ConfiguracaoCota
+
+<div class="titulo-pagina">
+    <h1>Cadastrar valor da cota</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+
+    <div class="col-lg-3">
+        <div class="form-group">
+            @Html.LabelFor(model => model.ValorCota, "Valor da cota")
+            @Html.TextBoxFor(model => model.ValorCota, new { required = "true", @class = "moeda", maxlength = 6 })
+            @Html.ValidationMessageFor(model => model.ValorCota)
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.PorcentagemLimiteGanhoInvestimento, "Porcentagem limite de ganho sobre o investimento")
+            @Html.TextBoxFor(model => model.PorcentagemLimiteGanhoInvestimento, new { required = "true", @class = "moeda", maxlength = 3 })
+            @Html.ValidationMessageFor(model => model.PorcentagemLimiteGanhoInvestimento)
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="form-group">
+
+            <button class="btn btn-success" id="btnAlterar" type="submit" value="Salvar" title="Salvar">Salvar</button>
+            <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+        </div>
+    </div>
+}

@@ -1,0 +1,100 @@
+﻿@model MultiSis.Domain.ContaBancaria
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Alterar dados bancários</h1>
+</div>
+
+<script>
+    $(function () {
+        $("#tabs").tabs();
+        MascaraData("#DataNascimento");
+    });
+</script>
+
+@if (ViewBag.Mensagem != null)
+{
+    <script>
+        $(function () {
+            MensagemOK('@ViewBag.Mensagem');
+        });
+    </script>
+}
+@using (Html.BeginForm())
+{
+
+    <div id="tabs">
+        <ul>
+            <li><a href="#detalhe">Detalhes Dados Bancários</a></li>
+        </ul>
+        <div id="detalhe">
+            <p>
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.IdPessoa)
+                
+                <div class="label">
+                    @Html.LabelFor(model => model.Pessoa.Nome, "Titular da conta")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.TextBoxFor(model => model.Pessoa.Nome, new { @disabled = "disabled" })
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.Pessoa.CPFCNPJ, "CPF ou CNPJ do titular")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.TextBoxFor(model => model.Pessoa.CPFCNPJ, new { @disabled = "disabled" })
+                </div>
+
+                 <div class="label">
+                    @Html.LabelFor(model => model.Pessoa.Email, "E-mail titular")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.TextBoxFor(model => model.Pessoa.Email, new { @disabled = "disabled" })
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.IdTipoPessoa, "Tipo de pessoa")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.DropDownList("IdTipoPessoa", "-- selecione --")
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.IdTipoConta, "Tipo de conta")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.DropDownList("IdTipoConta", "-- selecione --")
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.IdBanco, "Banco")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.DropDownList("IdBanco", "-- selecione --")
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.Agencia, "Agência")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.TextBoxFor(model => model.Agencia, new { @placeholder = "ex. 0001" })<span>OBS: dispensa dígito verificador</span>
+                </div>
+                
+                <div class="label">
+                    @Html.LabelFor(model => model.NumeroConta, "Conta")<span class="campo-obrigatorio">*</span>
+                </div>
+                <div class="text">
+                    @Html.TextBoxFor(model => model.NumeroConta, new { @placeholder = "ex. 010101-1" })<span>OBS: separar dígito verificador com hífen, sem espaço ou barra (Ex. 010101-1)</span>
+                </div>
+            </p>
+        </div>
+        <br />
+        <div class="clear" style="margin-top: 10px;">
+            <span>
+                <button class="btn btn-success" id="btnAlterar" type="submit" value="Salvar" title="Salvar">Salvar</button>
+                <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+            </span>
+        </div>
+    </div>
+}
+

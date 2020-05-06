@@ -1,0 +1,23 @@
+﻿@model List<MultiSis.Domain.Operacao>
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Operações financeiras</h1>
+</div>
+
+<button style="margin-bottom: 20px;" class="btn btn-primary" id="btnAdicionar" type="button" onclick="javascript:window.location = '/operacao/cadastrar';" value="Adicionar novo">Adicionar novo</button>
+
+<table class="table table-striped table-bordered table-hover" >
+    <tr>
+        <th>Id</th>
+        <th>Operação</th>
+        <th></th>
+    </tr>
+    @foreach (var o in Model)
+    {
+        <tr>
+            <td style="text-align: left;">@o.Id</td>
+            <td style="text-align: left;">@o.Nome</td>
+            <td>@Html.ActionLink("Alterar", "alterar", new { id = o.Id })</td>
+        </tr>
+    }
+</table>

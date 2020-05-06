@@ -1,0 +1,38 @@
+﻿@model MultiSis.Domain.Menu
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Alterar menu</h1>
+</div>
+
+@using (Html.BeginForm()) {
+    
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="label">
+            @Html.LabelFor(model => model.Nome) <span class="campo-obrigatorio">*</span>
+        </div>
+        <div class="text">
+            @Html.EditorFor(model => model.Nome)
+        </div>
+    
+        <div class="label">
+            @Html.LabelFor(model => model.IdMenu_Pai, "Menu pai")
+        </div>
+        <div class="text">
+            @Html.DropDownList("IdMenu_Pai", "-- selecione --")
+        </div>
+
+        <div class="label">
+            @Html.LabelFor(model => model.OrdemMenu, "Ordem") <span class="campo-obrigatorio">*</span>
+        </div>
+        <div class="text">
+            @Html.EditorFor(model => model.OrdemMenu)
+        </div>
+
+        <div class="clear label">
+        <span>
+            <button class="btn btn-success" id="btnSalvar" type="submit" value="Salvar">Salvar</button>
+            <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+        </span>
+    </div>
+}

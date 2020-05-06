@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MultiSis.Domain.FormaPagamento>
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Formas de pagamento</h1>
+</div>
+
+<button class="btn btn-success" type="button" title="Cadastrar forma de pagamento" onclick="javascript:window.location='/formapagamento/cadastrar'">Cadastrar forma de pagamento</button>
+<br />
+<br />
+
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Login)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @if (item.Ativo)
+                {
+                    <text>Sim</text>
+                }
+                else
+                {
+                    <text>Não</text>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "alterar", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

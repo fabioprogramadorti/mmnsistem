@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/Login.cshtml";
+}
+
+<center>
+    <div class="titulo-pagina">
+        <h1>Entrar no sistema administrativo</h1>
+    </div>
+    @if (ViewBag.Mensagem != null)
+    {
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            @ViewBag.Mensagem
+        </div>
+    }
+</center>
+
+<div class="login">
+    @Html.Action("_PartialLogin", "Login")
+</div>
+

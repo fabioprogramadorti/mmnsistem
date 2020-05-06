@@ -1,0 +1,91 @@
+﻿<script>
+
+    $(function () {
+
+        $.ajaxSetup({
+            cache: false
+        });
+
+        MascaraData($('#txtDataInicio'));
+        MascaraData($('#txtDataFim'));
+
+        $('#btnFiltrar').click(function () {
+            Filtrar(1);
+        });
+    });
+
+    function Filtrar(pg) {
+
+        $.ajax({
+            url: '/financeiro/_partialrelatoriosaldocontas/?di=' + $('#txtDataInicio').val() + '&df=' + $('#txtDataFim').val() + '&pg=' + pg + '&valorMinimo=' + $('#txtValorMinimo').val() + '&conta=' + $('#txtConta').val(),
+            type: 'GET',
+            beforeSend: function () {
+                $("#dialogProcessando").dialog("open");
+            },
+            complete: function () {
+                $("#dialogProcessando").dialog("close");
+            },
+            success: function (response) {
+                $('#conteudo_pagina').html(response);
+                $(".editor-label").addClass('form-group');
+                $(".editor-field").addClass('form-group');
+
+                $('.form-group input').addClass('form-control');
+                $('.form-group select').addClass('form-control');
+                $('.form-group password').addClass('form-control');
+            }
+        });
+    }
+
+</script>
+
+<div class="titulo-pagina">
+    <h1>Consulta de saldos das contas</h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Filtro
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Período inicial</label>
+                            <input type="text" class="text_filtro" name="txtDataInicio" id="txtDataInicio" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Período final</label>
+                            <input type="text" class="text_filtro" name="txtDataFim" id="txtDataFim" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Valor mínimo de saldo</label>
+                            <input type="text" class="text_filtro" name="txtValorMinimo" id="txtValorMinimo" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Conta</label>
+                            <input type="text" class="text_filtro" name="txtConta" id="txtConta" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <button id="btnFiltrar" name="btnFiltrar" type="button" class="btn btn-primary">Filtrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="conteudo_pagina">
+
+</div>

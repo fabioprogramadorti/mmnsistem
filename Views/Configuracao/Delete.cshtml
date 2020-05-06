@@ -1,0 +1,152 @@
+﻿@model MultiSis.Domain.Configuracoes
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Configuracoes</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nome)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nome)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CPFCNPJ)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CPFCNPJ)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Endereco)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Endereco)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Numero)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Numero)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Complemento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Complemento)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CEP)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CEP)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IBGEIdUF)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IBGEIdUF)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IBGECodigoMunicipio)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IBGECodigoMunicipio)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Bairro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Bairro)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ValorPontoBinario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ValorPontoBinario)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdBanco)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdBanco)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IdTipoConta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdTipoConta)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Agencia)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Agencia)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumeroConta)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumeroConta)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RedeLinear)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RedeLinear)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RedeBinaria)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RedeBinaria)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TransferenciaSaldoBonus)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TransferenciaSaldoBonus)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TransferenciaSaldoAdicional)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TransferenciaSaldoAdicional)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Voucher)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Voucher)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

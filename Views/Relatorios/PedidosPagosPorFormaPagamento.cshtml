@@ -1,0 +1,21 @@
+﻿@model List<MultiSis.Domain.sp_GetRelatorioPedidoPorTipoPagamento_Result>
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Pedidos pagos por tipo de pagamento</h1>
+</div>
+
+<table class="table table-striped table-bordered table-hover" >
+    <tr>
+        <th></th>
+        <th>Forma pagamento</th>
+        <th>Qt pagamentos</th>
+    </tr>
+    @foreach (var f in Model)
+    {
+        <tr>
+            <td>+</td>
+            <td>@f.Nome</td>
+            <td>@f.QtPagamento</td>
+        </tr>
+    }
+</table>

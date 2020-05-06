@@ -1,0 +1,74 @@
+﻿<script src="~/Scripts/View/Relatorio/PedidosPorFormaPagamento.js"></script>
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Pedidos por forma de pagamento</h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Filtros
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Forma pagamento</label>
+                            @Html.DropDownList("FormasPagamento", "-- todos --")
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Data pagamento inicial</label>
+                            <input type="text" id="txtDataInicio" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Data pagamento final</label>
+                            <input type="text" id="txtDataFim" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Produto</label>
+                            @Html.DropDownList("Produtos", "-- todos --")
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Pedidos Contas</label>
+                            <input type="checkbox" id="chkContas" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Pedidos Upgrades</label>
+                            <input type="checkbox" id="chkUpgrades" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Pedidos Voucher</label>
+                            <input type="checkbox" id="chkVoucher" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <button id="btnFiltrar" type="button" class="btn btn-primary">Filtrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div id="conteudo_pagina">
+        </div>
+    </div>
+</div>

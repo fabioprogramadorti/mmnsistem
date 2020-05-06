@@ -1,0 +1,211 @@
+﻿@model MultiSis.Domain.VooCorp
+
+<script src="~/Scripts/View/VooCorp/VooCorp.js"></script>
+
+<div class="titulo-pagina">
+    <h1>Cadastro de VooCorp</h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-info">
+            Estes dados serão exibidos em seu perfil no <b>VooApp 2.0</b> e ajudam a vender o seu negócio ou serviço
+        </div>
+
+        @using (Html.BeginForm("cadastro", "voocorp", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Dados básicos
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>Nome</label><span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(x => x.Nome, new { @class = "form-control", required = "true" })
+                            </div>
+
+                            <div class="form-group">
+                                <label>Descrição</label><span class="campo-obrigatorio">*</span>
+                                @Html.EditorFor(x => x.Descricao, new { @class = "form-control", required = "true" })
+                            </div>
+
+                            <div class="form-group">
+                                <label>Endereço completo</label><span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(x => x.Endereco, new { @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Estado</label><span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("IdUF", "-- selecione --")
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Cidade</label><span class="campo-obrigatorio">*</span>
+                                @Html.DropDownList("IBGECodigoMunicipio", "-- selecione --")
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div>
+                                <label>Latitude</label><span class="campo-obrigatorio">*</span>
+                            </div>
+                            <div class="form-group input-group">
+                                @Html.TextBoxFor(x => x.Latitude, new { @class = "moeda form-control", required = "true" })
+                                <span class="input-group-btn" title="Encontrar sua latitude e longitude atual">
+                                    <button class="btn btn-default latlon" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div>
+                                <label>Longitude</label><span class="campo-obrigatorio">*</span>
+                            </div>
+                            <div class="form-group input-group">
+                                @Html.TextBoxFor(x => x.Longitude, new { @class = "moeda form-control", required = "true" })
+                                <span class="input-group-btn" title="Encontrar sua latitude e longitude atual">
+                                    <button class="btn btn-default latlon" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div>
+                                <label></label>
+                                <span class="campo-obrigatorio"></span>
+                            </div>
+                            <p class="help-block">Se você não estiver no local cadastrado, <a href="http://www.latlong.net/" target="_blank" class="alert-link">clique aqui</a> para escolher sua Latitude e Longitude.</p>
+                        </div>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Dados de contato
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>E-mail</label><span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(x => x.Email, new { type = "email", @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Site</label><span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(x => x.Site, new { @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Telefone</label><span class="campo-obrigatorio">*</span>
+                                @Html.TextBoxFor(x => x.Telefone, new { @type = "tel", @class = "form-control", required = "true" })
+                            </div>
+                        </div>
+
+                    </p>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Desconto
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-12">
+                            <label>Desconto oferecido aos usuários VooApp 2.0</label><span class="campo-obrigatorio">*</span>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group input-group">
+                                @Html.TextBoxFor(x => x.DescontoOferecido, new { @class = "moeda form-control", required = "true", @value = "0,00" })
+                                <span class="input-group-addon">%</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <label>Cupom de desconto</label>
+                        </div>
+                        <div class="col-lg-4">
+                            @Html.TextBoxFor(x => x.CupomDescontoVooTxt, new { @class = "form-control" })
+                        </div>
+                        <div class="col-lg-12">
+                            <p class="help-block">Se seu sistema necessita de um cupom para que seus clientes recebam desconto, por favor, o informe neste campo.</p>
+                        </div>
+
+                    </p>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Imagens
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Logo marca pequena</label>
+                                <input type="file" id="imgPequena" name="imgPequena">
+                            </div>
+                        </div>
+                        <div class="col-lg-12" style="margin-bottom: 20px;">
+                            <p class="help-block">* Esta imagem é usada na lista de empresas no <b>VooApp 2.0</b></p>
+                            <p class="help-block">* Só será aceito imagem no formato: .JPG, .JPEG ou .PNG</p>
+                            <p class="help-block">* A imagem obrigatóriamente precisa ter 60x60 (60 pixels de largura X 60 pixels de altura)</p>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Imagem principal</label>
+                                <input type="file" id="imgGrande" name="imgGrande">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <p class="help-block">* Esta imagem é usada no seu perfil no <b>VooApp 2.0</b>. É a imagem principal no topo da tela</p>
+                            <p class="help-block">* Só será aceito imagem no formato: .JPG, .JPEG ou .PNG</p>
+                            <p class="help-block">* A imagem obrigatóriamente precisa ter 720x250 (720 pixels de largura X 250 pixels de altura)</p>
+                        </div>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Voucher de ativação do destaque por 30 dias no <b>VooApp 2.0</b>
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-12">
+                            <label>Voucher de destaque</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="fa fa-barcode"></i>
+                                </span>
+                                @Html.TextBoxFor(x => x.VoucherAtivacaoDestaque, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <p class="help-block">Caso você já queira adiquirir o destaque no <b>VooApp 2.0</b> por 30 dias, insira seu voucher neste campo.</p>
+                        </div>
+                    </p>
+                </div>
+            </div>
+
+            <button class="btn btn-success" data-loading-text="Processando..." id="btnSalvar" type="submit" value="Salvar" title="Salvar">Salvar</button>
+            <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>   
+        }
+    </div>
+</div>

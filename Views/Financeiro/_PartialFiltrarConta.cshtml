@@ -1,0 +1,64 @@
+﻿@model List<MultiSis.Domain.Conta>
+
+<div id="conteudo_pagina">
+    <table class="table table-striped table-bordered table-hover" >
+        <tr>
+            <th style="text-align: left">ID da conta
+            </th>
+            <th style="text-align: left">Nome do titular
+            </th>
+            <th>Data ativação</th>
+            <th>Data cancelamento</th>
+            <th></th>
+        </tr>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td style="text-align: left">
+                    @c.Identificacao
+                </td>
+                <td style="text-align: left">
+                    @c.Pessoa.Nome
+                </td>
+                <td>
+                    @if (c.DataAtivacao == null)
+                    {
+                        <text>-</text>
+                    }
+                    else
+                    {
+                        @c.DataAtivacao
+                    }
+                </td>
+                <td>
+                    @if (c.DataCancelamento == null)
+                    {
+                        <text>-</text>
+                    }
+                    else
+                    {
+                        @c.DataAtivacao
+                    }
+                </td>
+                <td>
+                    @if (ViewBag.Operacao == "1")
+                    {
+                        @Html.ActionLink("Inserir saldo adicional", "inserircredito", "financeiro", new { idConta = c.Identificacao }, null)
+                    }
+                    else if (ViewBag.Operacao == "2")
+                    {
+                        @Html.ActionLink("Diminuir saldo", "retirarcredito", "financeiro", new { idConta = c.Identificacao }, null)   
+                    }
+                    else if (ViewBag.Operacao == "3")
+                    {
+                        @Html.ActionLink("Inserir saldo", "inserirsaldo", "financeiro", new { idConta = c.Identificacao }, null)
+                    }
+                    else if (ViewBag.Operacao == "4")
+                    {
+                        @Html.ActionLink("Diminuir saldo adicional", "retirarsaldoadicional", "financeiro", new { idConta = c.Identificacao }, null)
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>

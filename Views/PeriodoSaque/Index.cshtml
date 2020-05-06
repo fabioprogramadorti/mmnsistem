@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MultiSis.Domain.PeriodoSaque>
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Períodos de saque</h1>
+</div>
+
+<button class="btn btn-primary" id="btnNovo" type="button" onclick="javascript:window.location='/periodosaque/cadastro';" style="margin-bottom: 30px;" value="Adicionar novo período">Adicionar novo período</button>
+
+<table class="table table-striped table-bordered table-hover" >
+    <tr>
+        <th>
+            Data abertura período
+        </th>
+        <th>
+            Data fechamento período
+        </th>
+        <th>
+            Data cancelamento período
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataAberturaPeriodo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataFechamentoPeriodo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCancelamento)
+            </td>
+            <td>
+                @Html.ActionLink("Alterar", "alterar", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

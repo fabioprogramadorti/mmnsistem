@@ -1,0 +1,76 @@
+﻿<script>
+    $(function () {
+        $(".filtro").button({
+            icons: {
+                primary: "ui-icon-search"
+            },
+            text: true
+        });
+        $("#tabs-filtro").tabs({
+            active: true,
+            collapsible: false
+        });
+    });
+
+</script>
+
+<script src="~/Scripts/View/Relatorio/DiferencaAdesaoBonusPorPlano.js"></script>
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Diferença em valor da adesão e valor ganho de bônus</h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Filtros
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>Plano</label>
+                            @Html.DropDownList("IdPlano", "-- selecione --")
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>Conta</label>
+                            @Html.TextBox("TxtConta")
+                            <p class="help-block">Não informe a conta para trazer todas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>De</label>
+                            <input type="text" id="txtDataInicio" class="text_filtro" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Até</label>
+                            <input type="text" id="txtDataFim" class="text_filtro" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <button id="btnFiltrar" type="button" class="btn btn-primary">Filtrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div id="conteudo_pagina" style="margin-top: 60px">
+            <br />
+            <br />
+            Nenhum filtro
+        </div>
+    </div>
+</div>

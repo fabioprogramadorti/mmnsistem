@@ -1,0 +1,51 @@
+﻿@model List<MultiSis.Administrativo.Models.MenuModel.Menu>
+@{
+    List<MultiSis.Administrativo.Models.MenuModel.Menu> menu = Model;     
+}
+<ul class="nav" id="side-menu">
+    <li>
+        <a href="/"><i class="fa fa-home fa-fw"></i>Início</a>
+    </li>
+
+    @if (menu.Count > 0)
+    {
+        foreach (MultiSis.Administrativo.Models.MenuModel.Menu m in menu)
+        {
+            if (m.Menus.Count > 0 || m.SubMenus.Count > 0)
+            {
+        <li>
+            <a href="javascript:void(0);">@m.NM_MENU</a>
+            <ul class="nav nav-second-level">
+                @if (m.Menus.Count > 0)
+                {
+
+                    foreach (MultiSis.Administrativo.Models.MenuModel.Menu subMenu in m.Menus)
+                    {
+                    <li>
+                        <a href="javascript:void(0);">@subMenu.NM_MENU</a>
+                        <ul class="nav nav-third-level">
+                            @foreach (MultiSis.Administrativo.Models.MenuModel.Menu.SubMenu item in subMenu.SubMenus)
+                            {
+                                <li>@Html.ActionLink(@item.NM_TELA_MENU, @item.NM_FUNCAO, @item.NM_CONTROLE)</li>
+                            }
+                        </ul>
+                    </li>
+                    }
+                }
+
+                @if (m.SubMenus.Count > 0)
+                {
+                    foreach (MultiSis.Administrativo.Models.MenuModel.Menu.SubMenu i in m.SubMenus)
+                    {
+                    <li>@Html.ActionLink(@i.NM_TELA_MENU, @i.NM_FUNCAO, @i.NM_CONTROLE)</li>
+                    }
+                }
+            </ul>
+        </li>
+            }
+        }
+    }
+    <li><a href="/login/alterarsenha">Mudar senha de acesso</a></li>
+	<li><a href="http://www.multisis.net/suporte" target="_blank">Suporte</a></li>
+    <li><a href="/login/logoff">Sair</a></li>
+</ul>

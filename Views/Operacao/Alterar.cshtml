@@ -1,0 +1,24 @@
+﻿@model MultiSis.Domain.Operacao
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Alterar operação</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.Id)
+
+    <div class="label">
+        @Html.LabelFor(model => model.Nome, "Operação")<span class="campo-obrigatorio">*</span>
+    </div>
+    <div class="text">
+        @Html.TextBoxFor(x => x.Nome)
+    </div>
+    
+    <div class="clear label">
+        <span>
+            <button class="btn btn-success" id="btnsalvar" type="submit" value="Salvar">Salvar</button>
+            <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+        </span>
+    </div>
+}

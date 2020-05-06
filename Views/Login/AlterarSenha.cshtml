@@ -1,0 +1,59 @@
+﻿@model MultiSis.Administrativo.Models.LoginModel
+
+<script>
+    $(function () {
+
+        $("#btnSalvar").click(function () {
+            if ($("#SenhaAtual").val() == "" || $("#Senha").val() == "" || $("#ConfirmacaoSenha").val() == "") {
+                MensagemOK('Todos os campos são obrigatórios');
+                return false;
+            }
+        });
+    });
+</script>
+
+<div class="label">
+    <span>
+        <h1>Alterar senha</h1>
+        <br />
+    </span>
+</div>
+
+@if (ViewBag.Mensagem != null)
+{
+    <div class="alert alert-warning alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        @ViewBag.Mensagem
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.IdUsuario);
+    @Html.HiddenFor(model => model.SenhaAtual);
+    
+    <div class="label">
+        @Html.LabelFor(model => model.SenhaAtualInformada, "Senha atual")<span class="campo-obrigatorio">*</span>
+    </div>
+    <div class="text">
+        @Html.PasswordFor(model => model.SenhaAtualInformada, new { @autofocus = "true", @placeholder = "senha atual", @required = "true" })
+    </div>
+    <div class="label">
+        @Html.LabelFor(model => model.Senha, "Senha nova")<span class="campo-obrigatorio">*</span>
+    </div>
+    <div class="text">
+        @Html.PasswordFor(model => model.Senha, new { @placeholder = "senha", @required = "true" })
+    </div>
+    <div class="label">
+        @Html.LabelFor(model => model.ConfirmacaoSenha, "Confirmação de senha")<span class="campo-obrigatorio">*</span>
+    </div>
+    <div class="text">
+        @Html.PasswordFor(model => model.ConfirmacaoSenha, new { @placeholder = "confirme a senha", @required = "true" })
+    </div>
+    
+    <div class="label">
+        <button class="btn btn-success" id="btnSalvar" type="submit" value="Salvar" title="Alterar senha">Salvar</button>
+    </div>
+}

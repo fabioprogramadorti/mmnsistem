@@ -1,0 +1,466 @@
+﻿@model MultiSis.Administrativo.Models.ProdutoModel
+
+@{
+    MultiSis.Domain.MultiSisEntities db = new MultiSis.Domain.MultiSisEntities();
+}
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Consultar produto</h1>
+</div>
+
+@using (Html.BeginForm("alterar", "produto", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(m => m.Produto.Id)
+    @Html.HiddenFor(m => m.Produto.Guid)
+
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Dados do produto
+            </div>
+            <div class="panel-body">
+                <p>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Codigo)<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.Produto.Codigo, new { maxlength = 10, placeholder = "ex: 0001" })
+                            @Html.ValidationMessageFor(model => model.Produto.Codigo)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Nome)<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.Produto.Nome, new { maxlength = "30" })
+                            @Html.ValidationMessageFor(model => model.Produto.Nome)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Descricao)<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.Produto.Descricao, new { maxlength = "250" })
+                            @Html.ValidationMessageFor(model => model.Produto.Descricao)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.GeraVoucherParaRevenda, "Gera voucher para revenda")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.GeraVoucherParaRevenda, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.GeraVoucherParaRevenda), "-- selecione --", new { title = "Este campo é marcado com SIM quando o produto é exclusivo para revenda e é gerado um Voucher no escritório do associado" })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.ProdutoProprio, "Produto próprio")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.ProdutoProprio, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.ProdutoProprio), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.ProdutoProprio)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.ProdutoTerceiro, "Produto de terceiros")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.ProdutoTerceiro, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.ProdutoTerceiro), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.ProdutoTerceiro)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Degustacao, "Degustação")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.Degustacao, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.Degustacao), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.Degustacao)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Vitrine)<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.Vitrine, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.Vitrine), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.Vitrine)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.ControleEstoque, "Controla estoque")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.ControleEstoque, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.ControleEstoque), "-- selecione --")
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Imagem)
+                            <input type="file" id="imgPequena" name="imgPequena">
+                            @Html.ValidationMessageFor(model => model.Produto.Imagem)
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Informações financeiras
+            </div>
+            <div class="panel-body">
+                <p>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Valor)<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.Produto.Valor, new { @class = "moeda", placeholder = "0,00" })
+                            @Html.ValidationMessageFor(model => model.Produto.Valor)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.BonificaRede, "Bonifica a rede")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.BonificaRede, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.BonificaRede), "-- selecione --", null)
+                            @Html.ValidationMessageFor(model => model.Produto.BonificaRede)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.ValorBonusIndicacaoDireta, "Bônus indicação direta")<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.Produto.ValorBonusIndicacaoDireta, new { @class = "moeda", placeholder = "0,00" })
+                            @Html.ValidationMessageFor(model => model.Produto.ValorBonusIndicacaoDireta)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.ValorBonusIndicacaoIndireta, "Bônus indicação indireta")<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.Produto.ValorBonusIndicacaoIndireta, new { @class = "moeda", placeholder = "0,00" })
+                            @Html.ValidationMessageFor(model => model.Produto.ValorBonusIndicacaoIndireta)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.PontuaRede, "Pontua a rede")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.PontuaRede, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.PontuaRede), "-- selecione --", null)
+                            @Html.ValidationMessageFor(model => model.Produto.PontuaRede)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Pontos)<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.Produto.Pontos, new { @class = "numero", maxlength = "3" })
+                            @Html.ValidationMessageFor(model => model.Produto.Pontos)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.PorcentagemDivisaoLucro, "Divisão lucro")<span class="campo-obrigatorio">*</span>
+                            @Html.TextBoxFor(model => model.Produto.PorcentagemDivisaoLucro, new { @class = "moeda", placeholder = "ex: 10 %" })
+                            @Html.ValidationMessageFor(model => model.Produto.PorcentagemDivisaoLucro)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.VendeNoSite, "Vende no site")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.VendeNoSite, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.VendeNoSite), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.VendeNoSite)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.VendeNoApp, "Vende no App")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.VendeNoApp, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.VendeNoApp), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.VendeNoApp)
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Vincular este produto à um plano de negócio
+            </div>
+            <div class="panel-body">
+                <p>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.PlanoNegocio, "É plano negócio")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.PlanoNegocio, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.PlanoNegocio), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.PlanoNegocio)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.IdPlanoNegocio, "Plano vinculado")
+                            @Html.DropDownListFor(model => model.Produto.IdPlanoNegocio, new SelectList(db.PlanoNegocio, "Id", "Nome"), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.IdPlanoNegocio)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Upgrade, "É plano exclusivo para upgrade")
+                            @Html.DropDownListFor(model => model.Produto.Upgrade, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.Upgrade), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.Upgrade)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.IdPacoteCota, "É pacote de cota PPR")
+                            @Html.DropDownListFor(model => model.Produto.IdPacoteCota, new SelectList(db.PacoteCota, "Id", "Nome"), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.IdPacoteCota)
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Serviço
+            </div>
+            <div class="panel-body">
+                <p>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.ServicoProprio, "Serviço próprio")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.ServicoProprio, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.ServicoProprio), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.ServicoProprio)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.ServicoTerceiro, "Serviço de terceiros")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.ServicoTerceiro, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.ServicoTerceiro), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.ServicoTerceiro)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.IdServico, "Serviço vinculado")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.IdServico, new SelectList(db.Servico, "Id", "Nome"), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.IdServico)
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Dados de envio
+            </div>
+            <div class="panel-body">
+                <p>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.NecessitaEntrega, "É necessário entrega")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.NecessitaEntrega, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.NecessitaEntrega), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.NecessitaEntrega)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.AceitaRetiradaEmpresa, "Aceita retirada na empresa")
+                            @Html.DropDownListFor(model => model.Produto.AceitaRetiradaEmpresa, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.AceitaRetiradaEmpresa), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.AceitaRetiradaEmpresa)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Peso, "Peso")
+                            @Html.TextBoxFor(model => model.Produto.Peso, new { @class = "moeda", placeholder = "0,00" })
+                            @Html.ValidationMessageFor(model => model.Produto.Peso)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Altura, "Altura")
+                            @Html.TextBoxFor(model => model.Produto.Altura, new { @class = "moeda", placeholder = "0,00" })
+                            @Html.ValidationMessageFor(model => model.Produto.Altura)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Largura, "Largura")
+                            @Html.TextBoxFor(model => model.Produto.Largura, new { @class = "moeda", placeholder = "0,00" })
+                            @Html.ValidationMessageFor(model => model.Produto.Largura)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Espessura, "Espessura")
+                            @Html.TextBoxFor(model => model.Produto.Espessura, new { @class = "moeda", placeholder = "0,00" })
+                            @Html.ValidationMessageFor(model => model.Produto.Espessura)
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Produto.Fragil, "Frágil")<span class="campo-obrigatorio">*</span>
+                            @Html.DropDownListFor(model => model.Produto.Fragil, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Produto.Fragil), "-- selecione --")
+                            @Html.ValidationMessageFor(model => model.Produto.Fragil)
+                        </div>
+                    </div>
+
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Formas de pagamento aceitas para o produto
+            </div>
+            <div class="panel-body">
+                <p>
+                    <table class="table table-striped table-bordered table-hover">
+                        <tr>
+                            <th></th>
+                            <th style="text-align: left">
+                                Forma pagamento
+                            </th>
+                        </tr>
+                        @for (int i = 0; i < Model.FormasPagamento.Count; i++)
+                            {
+                            <tr>
+                                <td style="text-align: center; width: 50px">
+                                    @Html.EditorFor(modelItem => modelItem.FormasPagamento[i].Selecionado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => modelItem.FormasPagamento[i].Nome)
+                                    @Html.HiddenFor(modelItem => modelItem.FormasPagamento[i].Id)
+                                </td>
+                            </tr>
+                            }
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    if (Model.Produto.PlanoNegocio)
+    {
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Bonificação de ativação
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                @Html.Label("Valor bônus indicação direta")
+                                R$ @ViewBag.BonusIndicacao
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tr>
+                                        <th>Nível</th>
+                                        <th style="text-align: left">
+                                            Valor
+                                        </th>
+                                    </tr>
+                                    @foreach (var b in (List<MultiSis.Domain.PlanoNegocioNivelBonus>)ViewBag.ValorBonusIndicacaoIndireta)
+                                    {
+                                        <tr>
+                                            <td style="text-align: center; width: 50px">
+                                                @b.NumeroNivel
+                                            </td>
+                                            <td>
+                                                R$ @String.Format("{0:###,###,###0.00}", b.Valor)
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.Produto.Upgrade)
+    {
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Bonificação de upgrade
+                </div>
+                <div class="panel-body">
+                    <p>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tr>
+                                        <th>Plano atual</th>
+                                        <th>Plano novo</th>
+                                        <th style="text-align: left">
+                                            Indicação direta
+                                        </th>
+                                        <th style="text-align: left">
+                                            Indicação indireta
+                                        </th>
+                                    </tr>
+                                    @foreach (var b in (List<MultiSis.Domain.ValorIndicacaoDiretaIndiretaUpgrade>)ViewBag.ValorBonusIndicacaoUpgrade)
+                                        {
+                                        <tr>
+                                            <td>
+                                                @b.PlanoNegocio.Nome
+                                            </td>
+                                            <td>
+                                                @b.PlanoNegocio1.Nome
+                                            </td>
+                                            <td>
+                                                R$ @String.Format("{0:###,###,###0.00}", b.ValorIndicacaoDireta)
+                                            </td>
+                                            <td>
+                                                R$ @String.Format("{0:###,###,###0.00}", b.ValorIndicacaoIndireta)
+                                            </td>
+                                        </tr>
+                                        }
+                                </table>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+    <div class="clear" style="margin-top: 10px;">
+        <span>
+            <button class="btn btn-success" id="btnAlterar" type="submit" value="Salvar" title="Salvar">Salvar</button>
+            <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+        </span>
+    </div>
+}

@@ -1,0 +1,99 @@
+﻿@model List<MultiSis.Domain.Pessoa>
+
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>Tipo</th>
+        <th>Simples nacional</th>
+        <th>Nome</th>
+        <th>Sexo</th>
+        <th>Data nascimento</th>
+        <th>E-mail</th>
+        <th>CPF ou CNPJ</th>
+        <th>RG</th>
+        <th>PIS</th>
+        <th>Passaporte</th>
+        <th>Endereço</th>
+        <th>CEP</th>
+        <th>Cidade</th>
+        <th>Bairro</th>
+        <th>UF</th>
+        <th>Celular</th>
+        <th>Tel Residencial</th>
+        <th></th>
+    </tr>
+    @if (Model.Count > 0)
+    {
+        foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.TipoPessoa.Nome</td>
+                <td>
+                    @if (p.OptanteSimplesNacional)
+                    {
+                        <text>Sim</text>
+                    }
+                    else
+                    {
+                        <text>Não</text>
+                    }
+                </td>
+                <td>@p.Nome</td>
+                <td>
+                    @if (p.IdSexo != null)
+                    {
+                        @p.Sexo.Nome
+                    }
+                    else
+                    {
+                        <text>-</text>
+                    }
+                </td>
+                <td>@p.DataNascimento.ToString("dd/MM/yyyy")</td>
+                <td>@p.Email</td>
+                <td>@p.CPFCNPJ</td>
+                <td>@p.RG</td>
+                <td>@p.PIS</td>
+                <td>@p.Passaporte</td>
+                <td>@p.Endereco - Nº @p.Numero</td>
+                <td>@p.CEP</td>
+                <td>
+                    @if (p.Cidade != null)
+                    {
+                        @p.Cidade.IBGENomeMunicipio
+                    }
+                    else
+                    {
+                        <text>-</text>
+                    }
+                </td>
+                <td>@p.Bairro</td>
+                <td>
+                    @if (p.Cidade != null)
+                    {
+                        @p.Cidade.IBGENomeUF
+                    }
+                    else
+                    {
+                        <text>-</text>
+                    }
+                </td>
+                <td>@p.CelularPrincipal</td>
+                <td>@p.TelefoneResidencial</td>
+                <td></td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="18" style="text-align:center">Nenhum registro encontrado</td>
+        </tr>
+    }
+</table>
+
+@using (Html.BeginForm("exporttoexcelpessoas", "relatorios"))
+{
+    <div class="row">
+        <button id="btnExportar" type="submit" class="btn btn-success">Exportar para excel</button>
+    </div>
+}

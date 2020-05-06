@@ -1,0 +1,53 @@
+﻿@model MultiSis.Administrativo.Models.VoucherModel
+
+<div class="titulo-pagina">
+    <h1>Gerar voucher</h1>
+</div>
+
+
+@using (Html.BeginForm())
+{
+    <div class="label">
+        @Html.LabelFor(model => model.IdentificacaoConta, "ID Conta")
+    </div>
+    <div class="text">
+        @Html.EditorFor(model => model.IdentificacaoConta)
+    </div>
+
+    <div class="label">
+        @Html.LabelFor(model => model.IdentificacaoContaReserva, "ID Conta que será resevada o voucher")
+    </div>
+    <div class="text">
+        @Html.EditorFor(model => model.IdentificacaoContaReserva)
+        <p><span style="font-size: x-small">Caso este voucher só possa ser utilizado por uma conta, informe o ID dela neste campo</span></p>
+    </div>
+
+    <div class="label">
+        @Html.LabelFor(model => model.Quantidade, "Quantidade")
+    </div>
+    <div class="text">
+        @Html.EditorFor(model => model.Quantidade)
+    </div>
+
+    <div class="label">
+        @Html.LabelFor(model => model.Valor, "Valor")
+    </div>
+    <div class="text">
+        @Html.EditorFor(model => model.Valor)
+    </div>
+
+    <div class="label">
+        @Html.LabelFor(model => model.AguardandoPagamento, "Gerar pedido para pagamento do associado")
+    </div>
+    <div class="text">
+        @Html.DropDownListFor(m => m.AguardandoPagamento, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(), "-- selecione --", null)
+        <p><span style="font-size: x-small">Caso este voucher precise ser pago, informe "Sim" neste campo e será gerado um pedido ao usuário</span></p>
+    </div>
+
+    <div class="clear" style="margin-top: 10px;">
+        <span>
+            <button id="btnConfirmarVoucher" type="submit" class="btn btn-success">Criar voucher</button>
+            <button id="btnCancelar" type="button" class="btn btn-primary" onclick="javascript:window.location='/';">Voltar</button>
+        </span>
+    </div>
+}

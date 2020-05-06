@@ -1,0 +1,49 @@
+﻿@model MultiSis.Administrativo.Models.MovimentoPessoasModel
+
+<div class="row">
+    <div class="col-lg-4 col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@String.Format("{0:###,###,###}", Model.QuantidadePessoasCadastradas)</div>
+                        <div>Pessoas cadastradas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@String.Format("{0:###,###,###}", Model.QuantidadeContasCadastradas)</div>
+                        <div>Contas cadastradas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-user fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">@String.Format("{0:###,###,###}", Model.QuantidadeContasAtivas)</div>
+                        <div>Contas ativas (ativo pago)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

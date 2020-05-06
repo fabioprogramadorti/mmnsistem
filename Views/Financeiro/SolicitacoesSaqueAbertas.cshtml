@@ -1,0 +1,63 @@
+﻿@model List<MultiSis.Administrativo.Models.SolicitacaoSaqueModel>
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Solicitações de saque pendentes para pagamento</h1>
+</div>
+
+<script src="~/Scripts/View/Financeiro/SolicitacoesSaque.js"></script>
+
+<script>
+    $(function () {
+        $(".filtro").button({
+            icons: {
+                primary: "ui-icon-search"
+            },
+            text: true
+        });
+        $("#tabs-filtro").tabs({
+            active: true,
+            collapsible: false
+        });
+    });
+
+</script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Filtros
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>De</label>
+                            <input type="text" id="txtDataInicio" class="text_filtro" />
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>Até</label>
+                            <input type="text" id="txtDataFim" class="text_filtro" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <button id="btnFiltrar" type="button" class="btn btn-primary">Filtrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div id="conteudo_pagina">
+            Nenhum filtro
+        </div>
+    </div>
+</div>

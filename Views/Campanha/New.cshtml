@@ -1,0 +1,54 @@
+﻿@model MultiSis.Domain.Campanha
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Nova campanha</h1>
+</div>
+
+<script>
+    $(function () {
+
+        MascaraData("#DataExpiracao");
+
+
+        if ('@ViewBag.Mensagem' != '')
+            MensagemOK('@ViewBag.Mensagem');
+    });
+</script>
+
+@using (Html.BeginForm("new", "campanha", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="label">
+        @Html.LabelFor(model => model.Nome, "Nome")<span class="campo-obrigatorio">*</span>
+    </div>
+    <div class="text">
+        @Html.EditorFor(model => model.Nome)
+    </div>
+
+    <div class="label">
+        @Html.LabelFor(model => model.IdTipoCampanha, "Tipo campanha")<span class="campo-obrigatorio">*</span>
+    </div>
+    <div class="text">
+        @Html.DropDownList("IdTipoCampanha", "-- selecione --")
+    </div>
+
+    <div class="label">
+        @Html.LabelFor(model => model.DataExpiracao, "Data expiração")<span class="campo-obrigatorio">*</span>
+    </div>
+    <div class="text">
+        @Html.TextBoxFor(model => model.DataExpiracao)
+    </div>
+
+    <div class="label">
+        @Html.LabelFor(model => model.Bonus, "Bônus por visualização")<span class="campo-obrigatorio">*</span>
+    </div>
+    <div class="text">
+        @Html.TextBoxFor(model => model.Bonus, new { @class = "moeda" })
+    </div>
+    
+    <div class="label">
+        <span>
+            <button class="btn btn-success" id="btnSalvar" type="submit" value="Salvar pessoa" title="Salvar">Salvar</button>
+            <button class="btn btn-default" onclick="javascript:window.location='/'; return false;" value="Cancelar" title="Cancelar">Cancelar</button>
+        </span>
+    </div>
+}

@@ -1,0 +1,74 @@
+﻿@model MultiSis.Domain.GrupoAcesso
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Editar grupo de acesso ao sistema</h1>
+</div>
+
+
+<script>
+    $(function () {
+        $("#accordion").accordion();
+    });
+</script>
+@using (Html.BeginForm())
+{   
+
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="label">
+        @Html.LabelFor(model => model.Nome, "Nome do grupo")
+    </div>
+    <div class="text">
+        @Html.EditorFor(model => model.Nome)
+    </div>
+
+    <br />
+    <div id="accordion">
+        <h3>Permissões das telas</h3>
+        <div>
+            <button class="btn btn-success" type="button" title="Adicionar permissão" onclick="javascript: window.location = '/permissaogrupoacessotela/cadastrar/@Model.Id'">Adicionar permissão</button>
+            <p>
+                <table class="table table-striped table-bordered table-hover" >
+                    <tr>
+                        <th>Salva
+                        </th>
+                        <th>Edita
+                        </th>
+                        <th>Exclui
+                        </th>
+                        <th>Tela
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in (IEnumerable<MultiSis.Domain.PermissaoGrupoAcessoTela>)ViewBag.Permissoes)
+                    {
+                        <tr>
+                            <td style="text-align: center">
+                                @Html.DisplayFor(modelItem => item.Salva)
+                            </td>
+                            <td style="text-align: center">
+                                @Html.DisplayFor(modelItem => item.Altera)
+                            </td>
+                            <td style="text-align: center">
+                                @Html.DisplayFor(modelItem => item.Exclui)
+                            </td>
+                            <td>
+                                @item.Tela.Nome
+                            </td>
+                            <td>
+                                @Html.ActionLink("Alterar", "alterar", "permissaogrupoacessotela", new { id = item.IdGrupoAcesso, item = item.Id }, null) |
+                                @Html.ActionLink("Excluir", "excluir", "permissaogrupoacessotela", new { id = item.IdGrupoAcesso, item = item.Id }, null)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </p>
+        </div>
+    </div>
+    <div class="clear label">
+        <span>
+            <button class="btn btn-success" id="btnsalvar" type="submit" value="Salvar">Salvar</button>
+            <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+        </span>
+    </div>
+}

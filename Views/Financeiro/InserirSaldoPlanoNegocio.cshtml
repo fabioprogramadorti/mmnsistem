@@ -1,0 +1,37 @@
+﻿@model MultiSis.Administrativo.Models.InserirSaldoPlanoNegocioModel
+
+<div class="titulo-pagina">
+    <h1>Inserir saldo para todos os associados de um mesmo plano</h1>
+</div>
+
+@using (Html.BeginForm("inserirsaldoplanonegocio", "financeiro", FormMethod.Post, new { @onsubmit = "return confirm('Confirma o crédito de R$ ' + $('#Valor').val() + '?');" }))
+{
+
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                Plano
+                @Html.DropDownList("IdPlanoNegocio", "-- selecione --")
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                Operação
+                @Html.DropDownList("IdOperacao", "-- selecione --")
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                Valor
+                @Html.TextBoxFor(m => m.Valor, new { @class = "moeda" })
+            </div>
+        </div>
+    </div>
+
+    <div class="clear label">
+        <span>
+            <button class="btn btn-success" id="btnConfirmar" type="submit" value="Confirmar crédito">Confirmar crédito</button>
+            <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+        </span>
+    </div>
+}

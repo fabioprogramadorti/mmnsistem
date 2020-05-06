@@ -1,0 +1,33 @@
+﻿@model List<MultiSis.Domain.Conta>
+<script src="~/Scripts/View/Conta/Conta.js"></script>
+<div id="conteudo_pagina">
+    <table class="table table-striped table-bordered table-hover" >
+        <tr>
+            <th></th>
+            <th>Nome</th>
+            <th>Identificação</th>
+            <th>Data de Cadastro</th>
+            <th>Numero da Conta</th>
+        </tr>
+        @foreach (var c in Model)
+        {
+            <tr>
+               <td>
+                    @Html.ActionLink("Alterar", "detalhecontausuario", "conta", new { id = c.Id }, null)
+                </td>
+                <td>
+                    @c.Pessoa.Nome
+                </td>
+                <td>
+                    @c.Identificacao
+                </td>
+                <td>
+                    @c.DataCadastro
+                </td>
+                <td>
+                    @c.NumeroConta
+                </td>
+            </tr>
+        }
+    </table>
+</div>

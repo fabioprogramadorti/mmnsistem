@@ -1,0 +1,55 @@
+﻿@model MultiSis.Domain.Pessoa
+
+<div style="margin-top: 30px; margin-bottom: 30px; border: 1px solid #fff; border-radius: 5px;">
+
+    <div class="panel panel-green">
+        <div class="panel-heading">
+            Novo Titular
+        </div>
+        <div class="panel-body">
+            <p>
+                @if (Model.CompletarCadastro)
+                {
+                    <div style="padding: 20px; margin-bottom: 10px; border: 1px solid #fff; border-radius: 5px; background-color: #f00;">
+                        <b style="text-transform: uppercase;">O novo titular precisa primeiro completar seu cadastro no sistema</b>
+                    </div>
+                }
+                <div class="label">
+                    @Html.LabelFor(model => model.IdTipoPessoa, "Tipo de Pessoa")
+                </div>
+                <div class="text">
+                    @Html.DisplayFor(x => x.TipoPessoa.Nome)
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.Nome, "Nome Completo")
+                </div>
+                <div class="text">
+                    @Html.DisplayFor(model => model.Nome)
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.DataNascimento, "Data de Nascimento")
+                </div>
+                <div class="text">
+                    @Html.DisplayFor(model => model.DataNascimento, new { @style = "width: 10% !important;" })
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.Email, "E-Mail")
+                </div>
+                <div class="text">
+                    @Html.DisplayFor(model => model.Email, new { @required = "required", @type = "email" })
+                </div>
+
+                <div class="label">
+                    @Html.LabelFor(model => model.CPFCNPJ, "CPF / CNPJ")
+                </div>
+                <div class="text">
+                    @Html.DisplayFor(model => model.CPFCNPJ, new { @required = "required" })
+                </div>
+            </p>
+        </div>
+    </div>
+
+</div>

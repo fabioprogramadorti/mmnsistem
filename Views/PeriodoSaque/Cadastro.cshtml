@@ -1,0 +1,98 @@
+﻿@model MultiSis.Domain.PeriodoSaque
+
+<div class="titulo-pagina">
+    <h1>Cadastrar período de saque</h1>
+</div>
+
+<script>
+    $(function () {
+        MascaraData('#DataAberturaPeriodo');
+        MascaraData('#DataFechamentoPeriodo');
+    });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DataAberturaPeriodo, "Data abertura do período")
+                @Html.TextBoxFor(model => model.DataAberturaPeriodo)
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DataFechamentoPeriodo, "Data fechamento do período")
+                @Html.TextBoxFor(model => model.DataFechamentoPeriodo)
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ValorMinimoSaque, "Valor mínimo para saque")
+                @Html.TextBoxFor(model => model.ValorMinimoSaque, new { @class = "moeda" })
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ValorMaximoSaque, "Valor máximo para saque")
+                @Html.TextBoxFor(model => model.ValorMaximoSaque, new { @class = "moeda" })
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TipoTaxa, "Tipo de taxa")
+                <select name="TipoTaxa" id="TipoTaxa">
+                    <option value="" selected="selected">-- selecione --</option>
+                    <option value="F">Valor Fixo</option>
+                    <option value="P">Porcentagem do valor solicitado</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.TaxaSaque, "Taxa de saque")
+                @Html.TextBoxFor(model => model.TaxaSaque, new { @class = "moeda" })
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="ApenasLiderRede" id="ApenasLiderRede">
+                        Apenas líderes de rede
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="ApenasQuemEnviouDocumentos" id="ApenasQuemEnviouDocumentos">
+                        Apenas pessoas que enviaram os documentos para empresa
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="clear label">
+            <span>
+                <button class="btn btn-success" id="btnSalvar" type="submit" value="Salvar">Salvar</button>
+                <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+            </span>
+        </div>
+    </div>
+}

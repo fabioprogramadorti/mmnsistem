@@ -1,0 +1,79 @@
+﻿<script src="~/Scripts/View/Consulta/Associado.js"></script>
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Consultar associado</h1>
+</div>
+
+<script>
+    $(function () {
+        $(".filtro").button({
+            icons: {
+                primary: "ui-icon-search"
+            },
+            text: true
+        });
+        $("#tabs-filtro").tabs({
+            active: true,
+            collapsible: false
+        });
+    });
+</script>
+
+<div id="tabs-filtro" style="margin-bottom: 2em;">
+    <ul>
+        <li><a href="#filtros">Filtros</a></li>
+    </ul>
+    <div id="filtros">
+        <p>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        ID Conta
+                        <input type="text" id="txtConta" class="text_filtro" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        Nome
+                        <input type="text" id="txtNome" class="text_filtro" />
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        CPF ou CNPJ
+                        <input type="text" id="txtCPFCNPJ" class="text_filtro" />
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        E-mail
+                        <input type="text" id="txtEmail" class="text_filtro" />
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        Possui documento para aprovação
+                        <select name="possuidocumentoaprovacao" id="possuidocumentoaprovacao">
+                            <option selected="selected" value="">-- selecione --</option>
+                            <option value="true">Sim</option>
+                            <option value="false">Não</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <button id="btnFiltrar" type="button" class="btn btn-primary">Filtrar</button>
+                    </div>
+                </div>
+            </div>
+        </p>
+    </div>
+</div>
+
+<div id="conteudo_pagina" style="margin-top: 60px">
+    <br />
+    <br />
+    Nenhum filtro
+</div>

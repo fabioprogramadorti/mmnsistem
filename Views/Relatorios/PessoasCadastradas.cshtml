@@ -1,0 +1,66 @@
+﻿<script src="~/Scripts/View/Consulta/Pessoa.js"></script>
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Consultar associado</h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Filtros
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" class="text_filtro" id="txtNome" title="Nome" />
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>E-mail</label>
+                            @Html.TextBox("txtEmail")
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Data de cadastro (início)</label>
+                            @Html.TextBox("txtDataInicio", null, new { @class = "data", @title = "Para filtrar por um range de datas informe o início e fim" })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>Data de cadastro (fim)</label>
+                            @Html.TextBox("txtDataFim", null, new { @class = "data", @title = "Para filtrar por um range de datas informe o início e fim" })
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>Todos documentos aprovados</label>
+                            <select name="documentosaprovados" id="documentosaprovados">
+                                <option selected="selected" value="">-- selecione --</option>
+                                <option value="true">Sim</option>
+                                <option value="false">Não</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <button id="btnFiltrar" name="btnFiltrar" type="button" class="btn btn-primary">Filtrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="conteudo_pagina" style="margin-top: 60px">
+
+</div>

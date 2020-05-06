@@ -1,0 +1,344 @@
+﻿@model MultiSis.Administrativo.Models.PedidoModel
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Detalhe do pedido @Model.Pedido.DataPedido.ToString("yyyyMMdd")@Model.Pedido.Id.ToString()</h1>
+</div>
+
+<script>
+    $(function () {
+        $("#tabs").tabs();
+
+        $("#dialogFormaPagamento").dialog({
+            width: 350,
+            modal: true,
+            autoOpen: false,
+            closeOnEscape: true,
+            open: function (event, ui) { $(".ui-dialog-titlebar-close").show(); },
+            show: {
+                effect: "blind",
+                duration: 100
+            },
+            hide: {
+                effect: "explode",
+                duration: 1000
+            }
+        });
+
+        $('#btnConfirmarPagamento').click(function () {
+            if ($('#idFormaPagamento option:selected').text() == "-- selecione --") {
+                MensagemOK('Selecione uma forma de pagamento');
+                return false;
+            }
+            else
+                return MensagemConfirmacao('Você garante que este pedido realmente está pago?', '/pedido/confirmarpagamento/?id=' + @Model.Pedido.Id + '&idFormaPagamento=' + $("#idFormaPagamento option:selected").val())
+        });
+
+        $('#btnPagamento').click(function () {
+            $("#dialogFormaPagamento").dialog("open");
+        });
+
+    });
+</script>
+<div>
+    @if (Model.Status != null)
+    {
+        if (Model.Status == MultiSis.Administrativo.Models.PedidoModel.StatusPedido.Aberto)
+        {
+            <div class="alert alert-info">
+                Pedido Aberto
+            </div>
+        }
+        else if (Model.Status == MultiSis.Administrativo.Models.PedidoModel.StatusPedido.Cancelado)
+        {
+            <div class="alert alert-danger">
+                Pedido Cancelado
+            </div>
+        }
+        else if (Model.Status == MultiSis.Administrativo.Models.PedidoModel.StatusPedido.Pago)
+        {
+            <div class="alert alert-success">
+                Pedido Pago
+            </div>
+        }
+    }
+</div>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#detalhe">Detalhe</a></li>
+        <li><a href="#cobranca">Cobranca</a></li>
+        <li><a href="#comprovante">Comprovante</a></li>
+    </ul>
+    <div id="detalhe">
+        <p>
+            <table class="table table-striped table-bordered table-hover">
+                <tr>
+                    <td style="width: 150px; text-align: right;">
+                        <b>Código:</b>
+                    </td>
+                    <td style="text-align: left">
+                        @Model.Pedido.DataPedido.ToString("yyyyMMdd")@Model.Pedido.Id
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 150px; text-align: right;">
+                        <b>Conta vinculada:</b>
+                    </td>
+                    <td style="text-align: left">
+                        @Model.Pedido.Conta.Identificacao - @Model.Pedido.Conta.PlanoNegocio.Nome
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 150px; text-align: right;">
+                        <b>Data do pedido:</b>
+                    </td>
+                    <td style="text-align: left">
+                        @Model.Pedido.DataPedido.ToString("dd/MM/yyyy")
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 150px; text-align: right;">
+                        <b>Data do pagamento:</b>
+                    </td>
+                    <td style="text-align: left">
+                        @if (Model.Pedido.DataPagamento != null)
+                        {
+                            @Model.Pedido.DataPagamento.Value.ToString("dd/MM/yyyy")
+                        }
+                        else
+                        {
+                            <text>-</text>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 150px; text-align: right;">
+                        <b>Data do cancelamento:</b>
+                    </td>
+                    <td style="text-align: left">
+                        @if (Model.Pedido.DataCancelamento != null)
+                        {
+                            @Model.Pedido.DataCancelamento.Value.ToString("dd/MM/yyyy")
+                        }
+                        else
+                        {
+                            <text>-</text>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 150px; text-align: right;">
+                        <b>Valor bruto:</b>
+                    </td>
+                    <td style="text-align: left">
+                        R$ @String.Format("{0:###,###,###0.00}", Model.Pedido.ValorBruto)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 150px; text-align: right;">
+                        <b>Valor desconto:</b>
+                    </td>
+                    <td style="text-align: left">
+                        R$ @String.Format("{0:###,###,###0.00}", Model.Pedido.ValorDesconto)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 150px; text-align: right;">
+                        <b>Valor líquido:</b>
+                    </td>
+                    <td style="text-align: left">
+                        R$ @String.Format("{0:###,###,###0.00}", Model.Pedido.ValorLiquido)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 150px; text-align: right; vertical-align: top;">
+                        <b>Itens:</b>
+                    </td>
+                    <td>
+                        <table class="table table-striped table-bordered table-hover">
+                            <tr>
+                                <th>Descrição</th>
+                                <th>Valor unitário</th>
+                                <th>Quantidade</th>
+                                <th>Valor total</th>
+                            </tr>
+                            @foreach (var i in Model.Itens)
+                            {
+                                <tr>
+                                    @if (i.IdProduto != null)
+                                    {
+                                        <td>@i.Produto.Descricao</td>
+                                    }
+                                    else if (i.IdConta != null)
+                                    {
+                                        <td>Plano de @i.Conta.PlanoNegocio.Nome</td>
+                                    }
+                                    else if (i.IdUpgrade != null)
+                                    {
+
+                                        <td>Upgrade da conta @i.Upgrade.Conta.Identificacao</td>
+                                    }
+                                    else if (i.IdVoucher != null)
+                                    {
+                                        <td>Voucher (@i.Voucher.Codigo)</td>
+                                    }
+                                    <td>@System.Configuration.ConfigurationManager.AppSettings["SimboloMoeda"].ToString() @String.Format("{0:###,###,###0.00}", i.ValorUnitario)</td>
+                                    <td>@i.Quantidade</td>
+                                    <td>R$ @String.Format("{0:###,###,###0.00}", i.ValorTotal)</td>
+                                </tr>
+                            }
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </p>
+    </div>
+    <div id="cobranca">
+        <p>
+            @{
+                MultiSis.Domain.MultiSisEntities db = new MultiSis.Domain.MultiSisEntities();
+                MultiSis.Domain.Cobranca cobranca = db.Cobranca.FirstOrDefault(x => x.IdPedido == Model.Pedido.Id);
+            }
+            @if (cobranca != null)
+            {
+                <table class="table table-striped table-bordered table-hover">
+                    <tr>
+                        <td style="width: 250px; text-align: right;">
+                            <b>Nosso número:</b>
+                        </td>
+                        <td style="text-align: left">
+                            @cobranca.NumeroCobranca
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 250px; text-align: right;">
+                            <b>Tipo de pagamento:</b>
+                        </td>
+                        <td style="text-align: left">
+                            @cobranca.TipoPagamento.Nome
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 250px; text-align: right;">
+                            <b>Banco:</b>
+                        </td>
+                        <td style="text-align: left">
+                            @cobranca.Banco.Nome
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 250px; text-align: right;">
+                            <b>Data emissão:</b>
+                        </td>
+                        <td style="text-align: left">
+                            @cobranca.DataGeracao.ToString("dd/MM/yyyy")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 250px; text-align: right;">
+                            <b>Data vencimento:</b>
+                        </td>
+                        <td style="text-align: left">
+                            @cobranca.DataVencimento.ToString("dd/MM/yyyy")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 250px; text-align: right;">
+                            <b>Data máxima para pagamento:</b>
+                        </td>
+                        <td style="text-align: left">
+                            @cobranca.DataMaximaPagamento.ToString("dd/MM/yyyy")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 250px; text-align: right;">
+                            <b>Valor:</b>
+                        </td>
+                        <td style="text-align: left">
+                            R$ @String.Format("{0:###,###,###0.00}", cobranca.Valor)
+                        </td>
+                    </tr>
+                </table>
+            }
+            else
+            {
+                <text>Não há cobrança gerada para este pedido</text>
+            }
+        </p>
+    </div>
+    <div id="comprovante">
+        <p>
+            <table class="table table-striped table-bordered table-hover">
+                <tr>
+                    <th>Arquivo</th>
+                    <th>Data envio</th>
+                    <th>Data aprovação</th>
+                    <th></th>
+                </tr>
+                @if (Model.Comprovantes.Count > 0)
+                {
+                    foreach (var i in Model.Comprovantes)
+                    {
+                        <tr>
+                            <td>
+                                @i.Arquivo
+                            </td>
+                            <td>
+                                @i.DataEnvio.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                @if (i.DataAprovacao != null)
+                                {
+                                    @i.DataAprovacao.Value.ToString("dd/MM/yyyy")
+                                }
+                                else
+                                {
+                                    <text>-</text>
+                                }
+                            </td>
+
+                            <td>
+                                <a href=@Url.Action("VerArquivo", new { fileName = i.Arquivo })>Ver arquivo</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4">
+                            Nenhum comprovante enviado
+                        </td>
+                    </tr>
+                }
+            </table>
+        </p>
+    </div>
+</div>
+
+<div id="dialogFormaPagamento" title="Selecione uma forma de pagamento" style="display: none;">
+    <br />
+    <p>
+        <div class="label">
+            @Html.Label("Selecione a forma de pagamento")
+        </div>
+        <div class="text">
+            @Html.DropDownList("idFormaPagamento", "-- selecione --")
+        </div>
+        <br />
+        <button id="btnConfirmarPagamento" type="button" class="btn btn-success" style="width: 100%">Confirmar pagamento</button>
+    </p>
+</div>
+
+<div class="clear" style="margin-top: 10px;">
+    <span>
+        @if (Model.Pedido.DataPagamento == null && Model.Pedido.DataCancelamento == null)
+        {
+            <button id="btnPagamento" type="button" class="btn btn-success">Confirmar pagamento</button>
+            <button id="btnConfirmarPagamentoSemBonificar" type="button" class="btn btn-warning" onclick="javascript:MensagemConfirmacao('Você garante que este pedido realmente está pago?', '/pedido/confirmarpagamentosembonificar/@Model.Pedido.Id');">Confirmar pagamento sem bonificação</button>
+            <button id="btnCancelarPedido" type="button" class="btn btn-danger" onclick="javascript:MensagemConfirmacao('Deseja realmente cancelar este pedido? <br /><br /><b>OBS: </b>Se houver boleto pago para este pedido, no momento da compensação bancária, o sitema reativará este pedido!', '/pedido/cancelarpedido/@Model.Pedido.Id');">Cancelar pedido</button>
+        }
+        <button id="btnCancelarDetalhe" type="button" class="btn btn-default" onclick="javascript:window.location='/financeiro/liberarpedido';">Voltar</button>
+    </span>
+</div>
+

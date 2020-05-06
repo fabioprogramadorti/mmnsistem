@@ -1,0 +1,601 @@
+﻿@model MultiSis.Administrativo.Models.AssociadoModel
+
+<script src="~/Scripts/View/Associado/Associado.js"></script>
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Detalhes Associado</h1>
+</div>
+
+<script>
+    $(function () {
+        //Limpando os campos
+        if ($('#Pessoa_IdPais').val() == "" || $('#Pessoa_IdPais').val() == "0") {
+            $("#Pessoa_IdUF").empty();
+            $("#Pessoa_IdUF").append('<option value="">-- selecione --</option>');
+            $("#Pessoa_IdUF").attr("disabled", "disabled");
+        }
+        if ($('#Pessoa_IdUF').val() == "" || $('#Pessoa_IdUF').val() == "0") {
+            $("#Pessoa_IBGECodigoMunicipio").empty();
+            $("#Pessoa_IBGECodigoMunicipio").append('<option value="">-- selecione --</option>');
+            $("#Pessoa_IBGECodigoMunicipio").attr("disabled", "disabled");
+        }
+
+
+        $("#tabs").tabs();
+        MascaraData("#Pessoa_DataNascimento");
+        MascaraData("#Usuario_DataBloqueio");
+        MascaraData("#Usuario_DataDesativacao");
+
+        $('#btnResetarSenha').click(function () {
+            return MensagemConfirmacao('Deseja realmente resetar a senha deste associado?', '/associado/resetarsenhausuario/@Model.Usuario.Id');
+        });
+
+        $('#btnZerarSaldoMinutos').click(function () {
+            return MensagemConfirmacao('Deseja realmente zerar os minutos restantes de VooLig?', '/associado/ZerarMinutosVooLig/@Model.Pessoa.Id');
+        });
+
+        $('#btnResetarSenhaFinanceira').click(function () {
+            return MensagemConfirmacao('Você conferiu na aba <b>Dados do Associado</b> se as informções cadastradas são as mesmas que foram informadas no e-mail solicitando a troca do senha? <br /><br />Você confirma que realmente o associado quer excluir sua senha financeira?', '/associado/resetarsenhafinanceira/@Model.Pessoa.Id');
+        });
+
+    });
+
+</script>
+
+@if (ViewBag.Mensagem != null)
+{
+    <script>
+        $(function () {
+            MensagemOK('@ViewBag.Mensagem');
+        });
+    </script>
+}
+
+<div id="tabs">
+    <ul>
+        <li><a href="#detalhe">Dados cadastrais</a></li>
+        <li><a href="#documentos">Documentos enviados</a></li>
+        <li><a href="#contas">Contas</a></li>
+        <li><a href="#contasbancarias">Contas bancárias</a></li>
+        <li><a href="#usuario">Usuário</a></li>
+        <li><a href="#saldo">Saldos</a></li>
+        <li><a href="#dadosGerais"><b style="color: #f00">Dados gerais</b></a></li>
+    </ul>
+    <div id="detalhe">
+        <p>
+            <div style="display: table; width: 100%">
+                @using (Html.BeginForm("AlterarPessoa", "Associado"))
+                {
+                    @Html.HiddenFor(m => m.Pessoa.Id)
+                    @Html.HiddenFor(m => m.Pessoa.EquipeBinariaSelecionada)
+                    @Html.HiddenFor(m => m.Pessoa.IdContaPatrocinador)
+                    @Html.HiddenFor(m => m.Pessoa.DataCadastro)
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.IdTipoPessoa, "Tipo de Pessoa")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.DropDownListFor(x => x.Pessoa.IdTipoPessoa, (SelectList)ViewBag.IdTipoPessoa, "-- selecione --", null)
+                    </div>
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.OptanteSimplesNacional, "Optante Simples Nacional")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.DropDownListFor(model => model.Pessoa.OptanteSimplesNacional, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Pessoa.OptanteSimplesNacional), "-- selecione", null)
+                    </div>
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.Nome, "Nome Completo")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.EditorFor(model => model.Pessoa.Nome)
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.IdTipoPessoa, "Data de Nascimento")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Pessoa.DataNascimento, new { @style = "width: 10% !important;" })
+                    </div>
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.IdSexo, "Sexo")
+                    </div>
+                    <div class="text">
+                        @Html.DropDownListFor(x => x.Pessoa.IdTipoPessoa, (SelectList)ViewBag.IdSexo, "-- selecione --", null)
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.Email, "E-Mail")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Pessoa.Email, new { @required = "required", @type = "email" })
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.CPFCNPJ, "CPF / CNPJ")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Pessoa.CPFCNPJ, new { @required = "required" })
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.RG, "RG")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Pessoa.RG, new { })
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.PIS, "Nº PIS")
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Pessoa.PIS, new { })
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.Passaporte, "Passaporte")
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Pessoa.Passaporte, new { })
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.Endereco, "Endereço")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.EditorFor(model => model.Pessoa.Endereco)
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.Numero, "Número")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Pessoa.Numero, new { @maxlength = "4" })
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.Complemento, "Complemento")
+                    </div>
+                    <div class="text">
+                        @Html.EditorFor(model => model.Pessoa.Complemento)
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.CEP)<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Pessoa.CEP)
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.IdPais, "País") <span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.DropDownListFor(x => x.Pessoa.IdPais, (SelectList)ViewBag.IdPais, "-- selecione --", null)
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.IBGEIdUF, "Estado")
+                    </div>
+                    <div class="text">
+                        @Html.DropDownListFor(x => x.Pessoa.IBGEIdUF, (SelectList)ViewBag.IBGEIdUF, "-- selecione --", null)
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.IBGECodigoMunicipio, "Cidade")
+                    </div>
+                    <div class="text">
+                        @Html.DropDownListFor(x => x.Pessoa.IBGECodigoMunicipio, (SelectList)ViewBag.IBGECodigoMunicipio, "-- selecione --", null)
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.Bairro, "Bairro")
+                    </div>
+                    <div class="text">
+                        @Html.EditorFor(model => model.Pessoa.Bairro)
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.TelefoneResidencial, "Tel Residencial")
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Pessoa.TelefoneResidencial, new { })
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.CelularPrincipal, "Cel Principal")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Pessoa.CelularPrincipal, new { })
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.CompletarCadastro, "Completar Cadastro")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.DropDownListFor(x => x.Pessoa.CompletarCadastro, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Pessoa.CompletarCadastro), "-- selecione --", null)
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.LiderRede, "É líder de rede")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.DropDownListFor(model => model.Pessoa.LiderRede, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Pessoa.LiderRede), "-- selecione", null)
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.EnviouDocumentos, "Enviou comprovação dos documentos")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.DropDownListFor(model => model.Pessoa.EnviouDocumentos, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Pessoa.EnviouDocumentos), "-- selecione", null)
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Pessoa.IdiomaPadrao, "Idioma padrão")<span class="campo-obrigatorio">*</span>
+                    </div>
+                    <div class="text">
+                        @Html.DropDownListFor(model => model.Pessoa.IdiomaPadrao, new MultiSis.Common.DropDown.DropDownList().GetDropDownListIdiomas(Model.Pessoa.IdiomaPadrao), "-- selecione", null)
+                    </div>
+
+                    <div class="label">
+                        <span>
+                            <button class="btn btn-success" id="btnSalvarPessoa" type="submit" value="Salvar pessoa" title="Salvar">Salvar pessoa</button>
+                            <button class="btn btn-default" onclick="javascript:window.location='/'; return false;" value="Cancelar" title="Cancelar">Cancelar</button>
+                        </span>
+                    </div>
+                }
+            </div>
+        </p>
+    </div>
+    <div id="documentos">
+        <p>
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <th>Tipo de documento</th>
+                        <th>Data de envio</th>
+                        <th>Data de aprovacao</th>
+                        <th>Data de rejeição</th>
+                        <th>Status</th>
+                        <th>Observação</th>
+                        <th></th>
+                    </tr>
+                    @if (Model.Documentos.Count > 0)
+                    {
+                        foreach (var i in Model.Documentos)
+                        {
+                            <tr>
+                                <td>@i.TipoDocumento.Nome</td>
+                                <td>@i.DataCadastro.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    @if (i.DataAprovacao != null)
+                                    {
+                                        <text>@i.DataAprovacao.Value.ToString("dd/MM/yyyy")</text>
+                                    }
+                                    else
+                                    {
+                                        <text>-</text>
+                                    }
+                                </td>
+                                <td>
+                                    @if (i.DataRejeicao != null)
+                                    {
+                                        <text>@i.DataRejeicao.Value.ToString("dd/MM/yyyy")</text>
+                                    }
+                                    else
+                                    {
+                                        <text>-</text>
+                                    }
+                                </td>
+                                <td>
+                                    @if (i.DataRejeicao != null)
+                                    {
+                                        <span class="label label-danger">Rejeitado</span>
+                                    }
+                                    else if (i.DataRejeicao == null && i.DataAprovacao != null)
+                                    {
+                                        <span class="label label-success">Aprovado</span>
+                                    }
+                                </td>
+                                <td>@i.Observacao</td>
+                                <td>
+                                    <a href=@Url.Action("VerArquivo", new { fileName = i.Arquivo })>Ver arquivo</a>
+                                    @if (i.DataAprovacao == null && i.DataRejeicao == null)
+                                    {
+                                        <text> | </text>
+                                        @Html.ActionLink("Aprovar", "aprovardocumento", "associado", new { id = i.Id }, null)
+                                        <text> | </text>
+                                        @Html.ActionLink("Rejeitar", "rejeitardocumento", "associado", new { id = i.Id }, null)
+                                    }
+                                    else if (i.DataAprovacao == null && i.DataRejeicao != null)
+                                    {
+                                        <text> | </text>
+                                        @Html.ActionLink("Aprovar", "aprovardocumento", "associado", new { id = i.Id }, null)
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" style="text-align:center">Nenhum registro encontrado</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </p>
+    </div>
+    <div id="contas">
+        <p>
+            <table class="table table-striped table-bordered table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>Conta principal</th>
+                    <th>Plano</th>
+                    <th>Patrocinador</th>
+                    <th></th>
+                </tr>
+                @foreach (var c in Model.Contas)
+                {
+                    <tr>
+                        <td>
+                            @c.Identificacao
+                        </td>
+                        <td>
+                            @if (c.ContaPadrao)
+                            {
+                                <text>Sim</text>
+                            }
+                            else
+                            {
+                                <text>Não</text>
+                            }
+                        </td>
+                        <td>
+                            @c.PlanoNegocio.Nome
+                        </td>
+                        <td>
+                            @if (string.IsNullOrEmpty(c.IDPatrocinador))
+                            {
+                                <text>-</text>
+                            }
+                            else
+                            {
+                                @c.IDPatrocinador
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("Consultar / Alterar", "detalhecontausuario", "conta", new { id = c.Id }, null)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </p>
+    </div>
+    <div id="contasbancarias">
+        <p>
+            <table class="table table-striped table-bordered table-hover">
+                <tr>
+                    <th>
+                        Banco
+                    </th>
+                    <th>Agência</th>
+                    <th>Conta</th>
+                    <th>Nº Cartão</th>
+                    <th>Bandeira</th>
+                    <th>Empresa</th>
+                    <th></th>
+                </tr>
+                @foreach (var c in Model.ContasBancarias)
+                {
+                    <tr>
+                        <td>
+                            @if (c.Banco != null)
+                            {
+                                @c.Banco.Nome
+                            }
+                            else
+                            {
+                                <text>-</text>
+                            }
+                        </td>
+                        <td>
+                            @c.Agencia
+                        </td>
+                        <td>
+                            @c.NumeroConta
+                        </td>
+                        <td>
+                            @c.NumeroCartao
+                        </td>
+                        <td>
+                            @if (c.IdBandeiraCartao != null)
+                            {
+                                @c.BandeiraCartao.Nome
+                            }
+                            else
+                            {
+                                <text>-</text>
+                            }
+                        </td>
+                        <td>
+                            @c.Empresa
+                        </td>
+                        <td>
+                            @Html.ActionLink("Alterar", "detalhe", "contabancaria", new { id = c.Id }, null)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </p>
+    </div>
+    <div id="usuario">
+        <p>
+            <div style="display: table; width: 100%">
+                @using (Html.BeginForm("AlterarUsuario", "Associado"))
+                {
+                    @Html.HiddenFor(m => m.Usuario.Id)
+                    @Html.HiddenFor(m => m.Usuario.IdPessoa)
+                    @Html.HiddenFor(m => m.Usuario.Senha)
+                    @Html.HiddenFor(m => m.Usuario.AlterarSenha)
+                    @Html.HiddenFor(m => m.Usuario.DataCadastro)
+                    <div class="label">
+                        @Html.LabelFor(model => model.Usuario.Login, "Login")
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Usuario.Login)
+                    </div>
+                    <div class="label">
+                        @Html.LabelFor(model => model.Usuario.Senha, "Senha")
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Usuario.Senha, new { @disabled = "disabled" })
+                        <span style="font-size: small"><button type="button" class="btn btn-warning" id="btnResetarSenha" href="javascript:void(0);">Resetar senha</button></span>
+                    </div>
+                    <div class="label">
+                        @Html.LabelFor(model => model.Usuario.DataCadastro, "Data de Cadastro")
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Usuario.DataCadastro, new { @disabled = "disabled" })
+                    </div>
+                    <div class="label">
+                        @Html.LabelFor(model => model.Usuario.DataBloqueio, "Data de Bloqueio")
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Usuario.DataBloqueio, new {  })
+                    </div>
+                    <div class="label">
+                        @Html.LabelFor(model => model.Usuario.DataDesativacao, "Data de Desativacao")
+                    </div>
+                    <div class="text">
+                        @Html.TextBoxFor(model => model.Usuario.DataDesativacao, new {  })
+                    </div>
+                    <div class="label">
+                        @Html.LabelFor(model => model.Usuario.AlterarSenha, "Alterar Senha")
+                    </div>
+                    <div class="text">
+                        @Html.CheckBoxFor(model => model.Usuario.AlterarSenha, new { @disabled = "disabled" })
+                    </div>
+                    <div class="label">
+                        <span>
+                            <button class="btn btn-success" id="btnSalvarUsuario" type="submit" value="Salvar usuário" title="Salvar">Salvar usuário</button>
+                            <button class="btn btn-default" onclick="javascript:window.location='/'; return false;" value="Cancelar" title="Cancelar">Cancelar</button>
+                        </span>
+                    </div>
+                }
+            </div>
+        </p>
+    </div>
+    <div id="saldo">
+        <p>
+            <div class="label" style="margin-bottom: 60px;">
+                <div class="VoucherDesconto">
+                    <div class="label">
+                        <div style="text-align: center">
+                            <div style="margin: 0 auto;">
+                                <h2 style="margin-bottom: 1em; margin-top: 1em;">Detalhamento do saldo</h2>
+                            </div>
+                        </div>
+                        <div style="text-align: center">
+                            <div style="margin: 0 auto;">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <tr>
+                                        <td style="text-align: left;">Total de entradas</td>
+                                        <td style="text-align: right;">R$ @String.Format("{0:###,###,###0.00}", Model.Saldo.SaldoEntradaBonusBruto)</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left;">Alíquota IRRF</td>
+                                        <td style="text-align: right;">@String.Format("{0:###,###,###0.00} %", Model.Saldo.AliquotaImpostoRenda)</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left;">Desconto IRRF</td>
+                                        <td style="text-align: right;">R$ @String.Format("{0:###,###,###0.00}", Model.Saldo.ValorRetidoNaFonte)</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left;">IRRF já retido</td>
+                                        <td style="text-align: right;">R$ @String.Format("{0:###,###,###0.00}", Model.Saldo.ValorJaRetidoNaFonteNoMes)</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left;">Total de saídas</td>
+                                        <td style="text-align: right;">
+                                            @if (Model.Saldo.TotalSaidas == 0)
+                                            {
+                                                <text>R$ @String.Format("{0:###,###,###0.00}", 0m)</text>
+                                            }
+                                            else if (Model.Saldo.TotalSaidas > (Model.Saldo.ValorJaRetidoNaFonteNoMes + Model.Saldo.ValorRetidoNaFonte))
+                                            {
+                                                <text>R$ @String.Format("{0:###,###,###0.00}", Convert.ToDecimal(Model.Saldo.TotalSaidas - (Model.Saldo.ValorJaRetidoNaFonteNoMes)))</text>
+                                            }
+                                            else
+                                            {
+                                                <text>R$ @String.Format("{0:###,###,###0.00}", Convert.ToDecimal(Model.Saldo.TotalSaidas - (Model.Saldo.ValorJaRetidoNaFonteNoMes)))</text>
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left; font-size: 16px; font-weight: bold;">Saldo disponível para saque</td>
+                                        <td style="text-align: right; font-size: 16px; font-weight: bold;">R$ @String.Format("{0:###,###,###0.00}", Model.Saldo.SaldoBonusLiquido)</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p>
+    </div>
+    <div id="dadosGerais">
+        <p>
+            <div style="display: table">
+                <div style="margin: 0 auto;">
+                    <h2 style="margin-bottom: 1em; margin-top: 1em;">Senha financeira</h2>
+                </div>
+                <button class="btn btn-default" id="btnResetarSenhaFinanceira"
+                        value="Resetar senha financeira" title="Resetar senha financeira">
+                    Resetar senha financeira
+                </button>
+            </div>
+            <div style="display: table">
+                <div style="margin: 0 auto;">
+                    <h2 style="margin-bottom: 1em; margin-top: 1em;">Detalhes do aceite do contrato</h2>
+                </div>
+                @if (Model.Contrato != null)
+                {
+                    <div class="label">
+                        @Html.LabelFor(model => model.Contrato.DataAceite, "Data do aceite")
+                    </div>
+                    <div class="text">
+                        @Model.Contrato.DataAceite.ToString("dd/MM/yyyy")
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Contrato.IP, "IP")
+                    </div>
+                    <div class="text">
+                        @Model.Contrato.IP
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Contrato.Nome, "Nome")
+                    </div>
+                    <div class="text">
+                        @Model.Contrato.Nome
+                    </div>
+
+                    <div class="label">
+                        @Html.LabelFor(model => model.Contrato.CPFCPNJ, "CPF ou CNPJ")
+                    </div>
+                    <div class="text">
+                        @Model.Contrato.CPFCPNJ
+                    </div>
+                }
+                else
+                {
+                    <div class="label">
+                        O contrato ainda não foi aceito!
+                    </div>
+                }
+            </div>
+        </p>
+    </div>
+</div>

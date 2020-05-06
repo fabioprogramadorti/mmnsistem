@@ -1,0 +1,56 @@
+﻿<script src="~/Scripts/View/Financeiro/InserirCredito.js"></script>
+
+<script>
+    $(function () {
+        $(".filtro").button({
+            icons: {
+                primary: "ui-icon-search"
+            },
+            text: true
+        });
+        $("#tabs-filtro").tabs({
+            active: true,
+            collapsible: false
+        });
+    });
+
+</script>
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Inserir saldo</h1>
+</div>
+
+<div id="tabs-filtro" style="margin-bottom: 2em;">
+    <ul>
+        <li><a href="#filtros">Filtros</a></li>
+    </ul>
+    <div id="filtros">
+        <p>
+            <table style="width: 100%">
+                <tr>
+                    <td style="text-align: left">ID da conta</td>
+                    <td style="text-align: left">Nome do titular</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <input type="text" id="txtIdentificacao" class="text_filtro" />
+                    </td>
+                    <td style="text-align: left;">
+                        <input type="text" id="txtNome" class="text_filtro" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: left;">
+                        <button id="btnFiltrar" type="button" class="btn btn-primary">Filtrar</button>
+                    </td>
+                </tr>
+            </table>
+        </p>
+    </div>
+</div>
+
+<div id="conteudo_pagina" style="margin-top: 60px">
+    <br />
+    <br />
+    Nenhum filtro
+</div>

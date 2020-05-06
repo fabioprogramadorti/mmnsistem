@@ -1,0 +1,77 @@
+﻿<div class="titulo-pagina">
+    <h1 class="margin-bottom">Sistema administrativo da @MultiSis.Common.Constantes.NomeEmpresa</h1>
+</div>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Saldos das contas
+        </div>
+        <div class="panel-body">
+            <p>
+                @Html.Action("_partialtotaissaldocontas", "financeiro")
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Movimento de pessoas e contas
+        </div>
+        <div class="panel-body">
+            <p>
+                @Html.Action("_partialmovimentopessoas", "relatorios")
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Movimentos de pedidos do dia
+        </div>
+        <div class="panel-body">
+            <p>
+                <div class="col-lg-3 col-md-6">
+                    @Html.Action("_partialpedidosfeitosnodia", "relatorios")
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    @Html.Action("_partialpedidosabertosfeitosnodia", "relatorios")
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    @Html.Action("_partialpedidoscanceladosfeitosnodia", "relatorios")
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    @Html.Action("_partialpedidospagosfeitosnodia", "relatorios")
+                </div>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Movimentos de contas do dia
+        </div>
+        <div class="panel-body">
+            <p>
+                <div class="col-lg-3 col-md-6">
+                    @Html.Action("_partialcontascadastradasnodia", "relatorios")
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    @Html.Action("_partialcontascadastradasnaoativadasnodia", "relatorios")
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    @Html.Action("_partialcontasativadasnodia", "relatorios")
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    @Html.Action("_partialcontascadastradasativadassemvouchernodia", "relatorios")
+                </div>
+            </p>
+        </div>
+    </div>
+</div>

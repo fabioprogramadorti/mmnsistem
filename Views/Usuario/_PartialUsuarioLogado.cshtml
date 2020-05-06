@@ -1,0 +1,26 @@
+﻿@model string
+<ul class="nav navbar-top-links navbar-right">
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            @if (DateTime.Now.Hour < 12)
+            {
+                <i class="fa fa-user fa-fw"></i><text>&nbsp;Bom dia @Model.Split(' ')[0] &nbsp;</text><i class="fa fa-caret-down"></i>
+            }
+            else if (DateTime.Now.Hour >= 12 && DateTime.Now.Hour < 18)
+            {
+                <i class="fa fa-user fa-fw"></i><text>&nbsp;Bom tarde @Model.Split(' ')[0] &nbsp;</text><i class="fa fa-caret-down"></i>
+            }
+            else if (DateTime.Now.Hour >= 18)
+            {
+                <i class="fa fa-user fa-fw"></i><text>&nbsp;Bom noite @Model.Split(' ')[0] &nbsp;</text><i class="fa fa-caret-down"></i>
+            }
+        </a>
+        <ul class="dropdown-menu dropdown-user">
+            <li><a href="/login/alterarsenha"><i class="fa fa-key fa-fw"></i> Mudar senha</a></li>
+            <li class="divider"></li>
+            <li>
+                <a href="/login/logoff"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
+            </li>
+        </ul>
+    </li>
+</ul>

@@ -1,0 +1,55 @@
+﻿@model MultiSis.Administrativo.Models.MensagemModel
+
+<br />
+<br />
+@switch (Model.Tipo)
+{
+    case MultiSis.Administrativo.Models.MensagemModel.TipoMensagem.Informacao:
+        /*<div class="panel panel-info">
+            <div class="panel-heading">
+                Informação
+            </div>
+            <div class="panel-body">*/
+    <div class="alert alert-info">
+        @Model.Mensagem
+    </div>
+@*</div>
+    </div>*@
+        break;
+    case MultiSis.Administrativo.Models.MensagemModel.TipoMensagem.Alerta:
+@*<div class="panel panel-warning">
+        <div class="panel-heading">
+            Alerta
+        </div>
+        <div class="panel-body">*@
+    <div class="alert alert-warning">
+        @Model.Mensagem
+    </div>
+@*</div>
+    </div>*@
+        break;
+    case MultiSis.Administrativo.Models.MensagemModel.TipoMensagem.Erro:
+@*<div class="panel panel-danger">
+        <div class="panel-heading">
+            Erro
+        </div>
+        <div class="panel-body">*@
+    <div class="alert alert-danger">
+        @Model.Mensagem
+    </div>
+@*</div>
+    </div>*@
+        break;
+    default:
+@*<div class="panel panel-info">
+        <div class="panel-heading">
+            Informação
+        </div>
+        <div class="panel-body">*@
+    <div class="alert alert-info">
+        @Model.Mensagem
+    </div>
+@*</div>
+    </div>*@
+        break;
+}

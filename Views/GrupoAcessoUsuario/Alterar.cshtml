@@ -1,0 +1,33 @@
+﻿@model MultiSis.Domain.GrupoAcessoUsuario
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Alterar grupo do usuário - @Model.UsuarioAdministrativo.Nome</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="label">
+        @Html.LabelFor(model => model.IdGrupoAcesso, "Grupo Acesso")
+    </div>
+    <div class="text">
+        @Html.DropDownList("ID_GRUPO_ACESSO", String.Empty)
+        @Html.ValidationMessageFor(model => model.IdGrupoAcesso)
+    </div>
+
+    <div class="label">
+        @Html.LabelFor(model => model.IdUsuario, "Usuário")
+    </div>
+    <div class="text">
+        @Html.DropDownList("ID_USUARIO", "-- selecione --")
+        @Html.ValidationMessageFor(model => model.IdUsuario)
+    </div>
+
+    <div class="clear label">
+        <span>
+            <button class="btn btn-success" id="btnsalvar" type="submit" value="Salvar">Salvar</button>
+            <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+        </span>
+    </div>
+}

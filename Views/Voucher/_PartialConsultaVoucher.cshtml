@@ -1,0 +1,169 @@
+﻿@model MultiSis.Domain.Voucher
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Dados do voucher
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    @using (Html.BeginForm("alterar", "voucher"))
+                    {
+
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.Codigo)
+                        @Html.HiddenFor(model => model.IdContaOrigem)
+                        @Html.HiddenFor(model => model.IdContaDestino)
+                        @Html.HiddenFor(model => model.IdContaReserva)
+                        @Html.HiddenFor(model => model.DataGeracao)
+
+                        <div class="col-lg-3">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.IdContaOrigem, "ID Conta")
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Conta.Identificacao, new { disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.IdContaReserva, "Reservado para")
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Conta2.Identificacao, new { disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.IdContaDestino, "Voucher usado por")
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Conta1.Identificacao, new { disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Codigo, "Código do voucher")
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Codigo, new { disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Valor)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Valor)
+                                @Html.ValidationMessageFor(model => model.Valor)
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Reservado)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.Reservado, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Reservado), "-- selecione --", null)
+                                @Html.ValidationMessageFor(model => model.Reservado)
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Bloqueado)
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.Bloqueado, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.Bloqueado), "-- selecione --", null)
+                                @Html.ValidationMessageFor(model => model.Bloqueado)
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="editor-label">
+                                @Html.Label("Tipo de bloqueio")
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.IdTipoBloqueio, new SelectList(new MultiSis.Domain.MultiSisEntities().TipoBloqueio, "Id", "Nome", Model.IdTipoBloqueio), "-- selecione --", null)
+                                @Html.ValidationMessageFor(model => model.IdTipoBloqueio)
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.VoucherGeraBonificacao, "Voucher gera bonificacao")
+                            </div>
+                            <div class="editor-field">
+                                @Html.DropDownListFor(model => model.VoucherGeraBonificacao, new MultiSis.Common.DropDown.DropDownList().GetDropDownListSimNao(Model.VoucherGeraBonificacao), "-- selecione --", null)
+                                @Html.ValidationMessageFor(model => model.VoucherGeraBonificacao)
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DataGeracao, "Data de criação")
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.DataGeracao, new { disabled = "disabled" })
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DataValidade, "Data de validade")
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.DataValidade)
+                                @Html.ValidationMessageFor(model => model.DataValidade)
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DataUso, "Data de uso")
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.DataUso)
+                                @Html.ValidationMessageFor(model => model.DataUso)
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DataCancelamento, "Data cancelamento")
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.DataCancelamento)
+                                @Html.ValidationMessageFor(model => model.DataCancelamento)
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.Observacao, "Observação")
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.Observacao)
+                                @Html.ValidationMessageFor(model => model.Observacao)
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="clear" style="margin-top: 10px;">
+                                <span>
+                                    <button id="btnConfirmarVoucher" type="submit" class="btn btn-success">Alterar</button>
+                                    <button id="btnCancelar" type="button" class="btn btn-primary" onclick="javascript:window.location='/';">Voltar</button>
+                                </span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

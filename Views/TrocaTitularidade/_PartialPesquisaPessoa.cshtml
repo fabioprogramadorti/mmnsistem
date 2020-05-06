@@ -1,0 +1,62 @@
+﻿@model PagedList.IPagedList<MultiSis.Domain.Pessoa>
+
+<script src="~/Scripts/View/TrocaTitularidade/TrocaTitularidade.js"></script>
+
+<table class="table table-striped table-bordered table-hover" >
+    <tr>
+        <th style="text-align: left">Nome
+        </th>
+        <th style="text-align: left">CPF ou CNPJ
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td style="text-align: left">
+                @c.Nome
+            </td>
+            <td style="text-align: left">
+                @c.CPFCNPJ
+            </td>
+            <td>
+                <a href="javascript:void(0)" onclick="javascript:GetTitular('@c.Nome', @c.Id);">Selecionar</a>
+            </td>
+        </tr>
+    }
+</table>
+<div id="paginacao">
+    <div class="pagina">
+        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+    </div>
+    @if (Model.HasPreviousPage)
+    {
+        <span class="margin-left">
+            <a href="javascript:void(0)" onclick="javascript:PesquisaTitular($('#NomeNovoTitular').val(), 1);" title="Primeira página"><<</a>
+            <a href="javascript:void(0)" onclick="javascript:PesquisaTitular($('#NomeNovoTitular').val(), @Convert.ToInt32(Model.PageNumber - 1));" title="Página anterior">Anterior</a>
+            <text>|</text>
+        </span>
+    }
+    else
+    {
+        <span class="margin-right"><<
+        </span>
+        <span class="margin-right">< Anterior
+        </span>
+        <text>|</text>
+    }
+    @if (Model.HasNextPage)
+    {
+        <span class="margin-left">
+            <a href="javascript:void(0)" onclick="javascript:PesquisaTitular($('#NomeNovoTitular').val(), @Convert.ToInt32(Model.PageNumber + 1));" title="Próxima página">Próxima ></a>
+            <a href="javascript:void(0)" onclick="javascript:PesquisaTitular($('#NomeNovoTitular').val(), @Model.PageCount);" title="Última página">>></a>
+        </span>
+    }
+    else
+    {
+        <span class="margin-right margin-left">Próxima >
+        </span>
+        <span class="margin-right">>>
+        </span>
+    }
+</div>

@@ -1,0 +1,67 @@
+﻿@model MultiSis.Domain.Tela
+
+<div class="titulo-pagina">
+    <h1 class="margin-bottom">Alterar tela</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="label">
+        @Html.LabelFor(model => model.IdMenu, "Menu")
+    </div>
+    <div class="text">
+        @Html.DropDownList("IdMenu", "-- selecione --")
+    </div>
+
+    <div class="label">
+        @Html.LabelFor(model => model.Nome, "Nome")
+    </div>
+    <div class="text">
+        @Html.EditorFor(model => model.Nome)
+    </div>
+
+    <div class="label">
+        @Html.LabelFor(model => model.Controle, "Controle")
+    </div>
+    <div class="text">
+        @Html.EditorFor(model => model.Controle)
+    </div>
+
+    <div class="label">
+        @Html.LabelFor(model => model.Funcao, "Função")
+    </div>
+    <div class="text">
+        @Html.EditorFor(model => model.Funcao)
+    </div>
+
+    <div class="label">
+        @Html.LabelFor(model => model.NomeTelaMenu, "Descrição da tela no menu")
+    </div>
+    <div class="text">
+        @Html.EditorFor(model => model.NomeTelaMenu)
+    </div>
+
+    <div class="label">
+        @Html.LabelFor(model => model.Tooltip, "Tooltip")
+    </div>
+    <div class="text">
+        @Html.EditorFor(model => model.Tooltip)
+    </div>
+    
+    <div class="label">
+        @Html.LabelFor(model => model.Ativo, "Tela ativa")
+    </div>
+    <div class="text">
+        @Html.EditorFor(model => model.Ativo)
+    </div>
+
+    <div class="clear label">
+        <span>
+            <button class="btn btn-success" id="btnsalvar" type="submit" value="Salvar">Salvar</button>
+            <button class="btn btn-default" id="btnCancelar" value="Cancelar" title="Cancelar">Cancelar</button>
+        </span>
+    </div>
+
+}
