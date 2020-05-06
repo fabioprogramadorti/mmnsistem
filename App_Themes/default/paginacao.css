@@ -1,0 +1,35 @@
+﻿#paginacao {
+    padding: 10px;
+    text-align: left;
+    background: transparent url('../../Image/bg-header.gif') repeat scroll 0% 0%;
+    border-left: 1px solid #B8B7B6;
+    border-bottom: 1px solid #B8B7B6;
+    border-top: 1px solid #B8B7B6;
+    border-right: 1px solid #B8B7B6;
+    border-radius: 4px;
+}
+
+    #paginacao a {
+        text-decoration: none;
+        color: #373D45;
+        margin-right: 10px;
+    }
+
+    #paginacao .pagina {
+        float: left;
+        margin-right: 20px;
+    }
+
+    #paginacao .margin-right {
+        margin-right: 10px;
+    }
+
+    #paginacao .margin-left {
+        margin-left: 10px;
+    }
+
+    #paginacao .botoes {
+        float: left;
+    }
+
+

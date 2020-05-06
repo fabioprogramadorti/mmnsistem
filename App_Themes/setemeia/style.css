@@ -1,0 +1,314 @@
+/* CSS for for All Pages */
+
+* {
+    margin: 0px 0px 0px 0px;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #252833;
+    background-repeat: repeat;
+    height: 100%;
+    background-image: url('images/back-login.png');
+    background-position: center top;
+    background-repeat: repeat;
+}
+
+img {
+    max-width: 100%;
+    border-bottom: 15px;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/* header */
+#header {
+    background-color: #fdfdfd;
+    width: 100%;
+    z-index: 100;
+}
+
+    #header .toppart {
+        height: 70px;
+        width: 100%;
+    }
+
+    #header a {
+    }
+
+    #header .logo {
+        /*padding-top: 8px;*/
+        padding-left: 6%;
+        width: 20%;
+        float: left;
+        display: block;
+    }
+
+    #header .h_hr {
+        height: 10px;
+        width: 100%;
+        margin-top: 2px;
+        clear: both;
+    }
+
+    #header hr {
+        -webkit-margin-before: 0px;
+        -webkit-margin-after: 0px;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        height: 10px;
+        float: left;
+        border: 0px none;
+    }
+
+    #header .hr_left {
+        width: 17%;
+        background-color: #f03f37;
+    }
+
+    #header .hr_middle {
+        width: 66%;
+        background-color: #851c1a;
+    }
+
+    #header .hr_right {
+        width: 17%;
+        background-color: #252833;
+    }
+
+/*#menu {
+    margin-top: 20px;
+    right: 20px;
+    float: left;
+}
+
+    #menu ul {
+        padding: 0px;
+        margin: 0px;
+        list-style: none;
+        display: table-cell;
+    }
+
+        #menu ul li {
+            display: table-cell;
+            padding-right: 15px;
+        }
+
+    #menu a {
+        color: #666868;
+    }
+
+        #menu a, #menu a:hover {
+            display: inline-block;
+            font-family: Calibri;
+            font-size: 1.3em;
+            text-decoration: none;
+            vertical-align: middle;
+        }
+
+            #menu a:hover {
+                text-decoration: underline;
+                color: #831d1e;
+            }
+
+    #menu .on {
+        color: #831d1e;
+    }
+
+    #menu img {
+        vertical-align: middle;
+    }
+    #menu li ul {
+        position: fixed;
+        padding: 8px;
+        background-color: #fff;
+        display: none;
+        float: right;
+    }
+
+    #menu li:hover ul, #menu li.over ul {
+        display: block;
+    }
+
+    #menu li ul li {
+        display: block;
+        padding-right: 0px;
+        text-align: right;
+    }
+
+    #menu .submenu-conta {
+        margin-left: -90px;
+        width: 150px;
+    }
+
+    #menu .submenu-equipe {
+        margin-left: -115px;
+        width: 180px;
+    }*/
+
+/* content */
+#content {
+    background-image: url('images/back-login.png');
+    background-position: center top;
+    background-repeat: repeat;
+    min-height: 90%;
+    padding-bottom: 50px;
+    /*padding-left: 6%;*/
+    /*border-bottom: 13px;*/
+}
+
+    #content input[type=text] {
+        border: 1px solid #333;
+        font-family: Calibri;
+        font-size: 18px;
+        color: #656868;
+        margin-top: 5px;
+        display: block;
+        padding: 5px;
+        -moz-border-radius: 15px; /* Firefox */
+        -webkit-border-radius: 15px; /* Safari, Chrome */
+        -khtml-border-radius: 15px; /* KHTML */
+        border-radius: 15px; /* CSS3 */
+        width: 400px;
+        border-bottom: 13px;
+    }
+
+    #content input[type=password] {
+        border: 1px solid #333;
+        font-family: Calibri;
+        font-size: 18px;
+        color: #656868;
+        margin-top: 5px;
+        display: block;
+        padding: 5px;
+        -moz-border-radius: 15px; /* Firefox */
+        -webkit-border-radius: 15px; /* Safari, Chrome */
+        -khtml-border-radius: 15px; /* KHTML */
+        border-radius: 15px; /* CSS3 */
+        width: 400px;
+        border-bottom: 13px;
+    }
+
+
+    #content select {
+        border: 1px solid #333;
+        font-family: Calibri;
+        font-size: 18px;
+        color: #656868;
+        margin-top: 5px;
+        display: block;
+        padding: 5px;
+        -moz-border-radius: 15px; /* Firefox */
+        -webkit-border-radius: 15px; /* Safari, Chrome */
+        -khtml-border-radius: 15px; /* KHTML */
+        border-radius: 15px; /* CSS3 */
+        width: 400px;
+        border-bottom: 13px;
+    }
+
+    #content input[type=date] {
+        border: 1px solid #333;
+        font-family: Calibri;
+        font-size: 18px;
+        color: #656868;
+        margin-top: 5px;
+        display: block;
+        padding: 5px;
+        -moz-border-radius: 15px; /* Firefox */
+        -webkit-border-radius: 15px; /* Safari, Chrome */
+        -khtml-border-radius: 15px; /* KHTML */
+        border-radius: 15px; /* CSS3 */
+        width: 400px;
+        border-bottom: 13px;
+    }
+
+    #content input[type=email] {
+        border: 1px solid #333;
+        font-family: Calibri;
+        font-size: 18px;
+        color: #656868;
+        margin-top: 5px;
+        display: block;
+        padding: 5px;
+        -moz-border-radius: 15px; /* Firefox */
+        -webkit-border-radius: 15px; /* Safari, Chrome */
+        -khtml-border-radius: 15px; /* KHTML */
+        border-radius: 15px; /* CSS3 */
+        width: 400px;
+        border-bottom: 13px;
+    }
+
+    #content input[type=tel] {
+        border: 1px solid #333;
+        font-family: Calibri;
+        font-size: 18px;
+        color: #656868;
+        margin-top: 5px;
+        display: block;
+        padding: 5px;
+        -moz-border-radius: 15px; /* Firefox */
+        -webkit-border-radius: 15px; /* Safari, Chrome */
+        -khtml-border-radius: 15px; /* KHTML */
+        border-radius: 15px; /* CSS3 */
+        width: 400px;
+        border-bottom: 13px;
+    }
+
+.clear {
+    clear: both;
+}
+
+#content .hr_end {
+    height: 30px;
+    border: 0px none;
+}
+
+/* footer */
+#footer {
+    background-color: #252833;
+    height: 30px;
+    position: fixed;
+    padding-top: 3px;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+    font-family: Calibri Light;
+    font-size: 14px;
+}
+
+    #footer span {
+        font-family: Calibri Light;
+        font-size: 14px;
+        color: #c9cacd;
+        text-shadow: 1px 1px #5c5e66;
+    }
+
+.contas {
+    float: right;
+}
+
+#nome {
+    margin-left: 35px;
+}

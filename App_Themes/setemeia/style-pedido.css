@@ -1,0 +1,123 @@
+/* CSS for Pedido Page */
+
+#content {
+    width:100%;
+}
+#content .pedido-block {
+    padding-top:25px;
+    width:100%;
+}
+#content .pedido-block h1 {
+    font-family:Calibri;
+    font-size:2.5EM;
+    color:#f03f37;
+    text-transform:uppercase;
+}
+#content .pedido-form {
+    margin-top:23px;
+}
+#content .rounded-table {
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    margin-top:40px;    
+    background-color:#ffffff;
+}
+#content table {
+    width:95%;
+    border: none !important;
+    margin-left:30px;
+    margin-top:10px;
+}
+#content table, #content tr, #content td {
+    font-family:Calibri;
+    font-size:1.05em;
+    color:#656868;
+    padding:5px;
+}
+#content .table-financeiro {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+#content .th-ent-l {
+    color:#656868;
+    font-size:16pt;
+}
+#content .th-ent-c {
+    color:#656868;
+    font-size:16pt;
+    text-align:center;
+}
+#content .td-ent-l {
+    color:#656868;
+    font-size:13pt;
+}
+#content .td-ent-c {
+    color:#656868;
+    font-size:13pt;
+    text-align:center;
+}
+#content .td-pago {
+    color:#4fb94e;
+}
+#content .td-cancelada {
+    color:#831d1e;
+}
+#content .td-naopago {
+    color:#000000;
+}
+
+
+#content .table-pedido {
+    padding-top:10px;
+}
+#content .pedido-title {
+    font-family:Calibri;
+    color:#656868;
+    font-size:1.9em;
+    padding-left:18px;
+}
+#content .pedido-info {
+    font-family:Calibri;
+    color:#656868;
+    font-size:1.0em;
+    padding-left:10px;
+}
+#content .table-pedido {
+    margin-top:12px;
+    margin-left:0px;
+}
+#content .td-ped-img {
+    width:44px;
+    padding-left:18px;
+}
+#content .td-ped-th {
+    color:#f43e3a;
+    font-weight:bold;
+    font-size:14pt;
+    text-transform:uppercase;
+    padding-left:0px;
+    padding-top:2px;
+}
+#content .td-ped-item {
+    text-align:center;
+}
+#content #ped-detalhe {
+    width:100%;
+}
+#content .table-detalhe {
+    margin-left:0px;
+}
+#content .td-ped-det {
+    padding:2px;
+    font-size:14pt;
+}
+#content .td-ped-acao {
+    text-align:center;
+}
+#content .td-ped-det-tit {
+    color:#f43e3a;
+    font-size:14pt;
+    padding-left:42px;
+}

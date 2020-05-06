@@ -1,0 +1,319 @@
+/*Now the CSS*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.tree ul {
+    padding-top: 20px;
+    position: relative;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+.tree li {
+    float: left;
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 20px 5px 0 5px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+    /*We will use ::before and ::after to draw the connectors*/
+
+    .tree li::before, .tree li::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 50%;
+        border-top: 1px solid #ccc;
+        width: 50%;
+        height: 20px;
+    }
+
+    .tree li::after {
+        right: auto;
+        left: 50%;
+        border-left: 1px solid #ccc;
+    }
+
+    /*We need to remove left-right connectors from elements without 
+any siblings*/
+    .tree li:only-child::after, .tree li:only-child::before {
+        display: none;
+    }
+
+    /*Remove space from the top of single children*/
+    .tree li:only-child {
+        padding-top: 0;
+    }
+
+    /*Remove left connector from first child and 
+right connector from last child*/
+    .tree li:first-child::before, .tree li:last-child::after {
+        border: 0 none;
+    }
+    /*Adding back the vertical connector to the last nodes*/
+    .tree li:last-child::before {
+        border-right: 1px solid #ccc;
+        border-radius: 0 5px 0 0;
+        -webkit-border-radius: 0 5px 0 0;
+        -moz-border-radius: 0 5px 0 0;
+    }
+
+    .tree li:first-child::after {
+        border-radius: 5px 0 0 0;
+        -webkit-border-radius: 5px 0 0 0;
+        -moz-border-radius: 5px 0 0 0;
+    }
+
+/*Time to add downward connectors from parents*/
+.tree ul ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-left: 1px solid #ccc;
+    width: 0;
+    height: 20px;
+}
+
+.tree li a {
+    width: 43px;
+    height: 55px;
+    border: 1px solid transparent;
+    /*padding: 5px 10px;*/
+    text-decoration: none;
+    color: #666;
+    font-family: arial, verdana, tahoma;
+    font-size: 11px;
+    display: inline-block;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+}
+
+    /*Time for some hover effects*/
+    /*We will apply the hover effect the the lineage of the element also*/
+    .tree li a:hover, .tree li a:hover + ul li a {
+        background-color: #fff;
+        color: #000;
+        border: 1px solid #999999;
+        box-shadow: 1px 1px 0 #999999;
+    }
+        /*Connector styles on hover*/
+        .tree li a:hover + ul li::after,
+        .tree li a:hover + ul li::before,
+        .tree li a:hover + ul::before,
+        .tree li a:hover + ul ul::before {
+            border-color: #999999;
+        }
+
+/*Thats all. I hope you enjoyed it.
+Thanks :)*/
+
+/*rede*/
+.tree {
+    width: auto;
+}
+
+    .tree ul li a {
+        text-align: center;
+        background-repeat: no-repeat;
+    }
+
+        .tree ul li a img {
+            margin-left: 2px;
+            float: left;
+            width: 39px;
+            height: 53px;
+        }
+
+        .tree ul li a:hover span.tip {
+            display: block;
+            visibility: visible;
+            margin-top: -100px;
+            margin-left: 43px;
+        }
+
+        .tree ul li a span.tip {
+            display: block;
+            visibility: hidden;
+            background-color: #FFF;
+            position: absolute;
+            z-index: 50;
+            margin: 84px 0 0 0;
+            width: 250px;
+            line-height: 19px;
+            text-align: left;
+            text-transform: capitalize;
+            border-radius: 4px;
+            border: 2px solid #999999;
+            padding: 8px;
+            position: absolute;
+            z-index: 9999;
+            -ms-box-shadow: 0 0 5px #aaa;
+            -moz-box-shadow: 0 0 5px #aaa;
+            -o-box-shadow: 0 0 5px #aaa;
+            -webkit-box-shadow: 0 0 5px #aaa;
+            box-shadow: 0 0 5px #aaa;
+            -webkit-transition: all 0.01s ease;
+            -moz-transition: all 0.01s ease;
+            -o-transition: all 0.01s ease;
+            -ms-transition: all 0.01s ease;
+            transition: all 0.01s ease;
+        }
+
+.tip:before {
+    border: solid;
+    border-color: #999999 transparent;
+    border-width: 0 0px 0px 0px;
+    content: "";
+    position: absolute;
+    left: 10%;
+    top: 0;
+    z-index: 99;
+    margin-top: -8px;
+}
+
+.tree ul li a.rede-vazio {
+    background: none;
+    border: 1px dashed #CCCCCC;
+}
+
+.inativo {
+    color: #6E3422;
+}
+
+.tree ul li a.inativo-h {
+    background-position: -710px 8px;
+}
+
+.tree ul li a.inativo-m {
+    background-position: -710px -73px;
+}
+
+.prata {
+    color: #5D5E60;
+}
+
+.tree ul li a.prata-h {
+    background-position: -65px 8px;
+}
+
+.tree ul li a.prata-m {
+    background-position: -65px -73px;
+}
+
+.ouro {
+    color: #CDA349;
+}
+
+.tree ul li a.ouro-h {
+    background-position: -138px 8px;
+}
+
+.tree ul li a.ouro-m {
+    background-position: -138px -73px;
+}
+
+.safira {
+    color: #5568A4;
+}
+
+.tree ul li a.safira-h {
+    background-position: -209px 8px;
+}
+
+.tree ul li a.safira-m {
+    background-position: -209px -73px;
+}
+
+.rubi {
+    color: #A30024;
+}
+
+.tree ul li a.rubi-h {
+    background-position: -283px 8px;
+}
+
+.tree ul li a.rubi-m {
+    background-position: -283px -73px;
+}
+
+.esmeralda {
+    color: #0F9F7A;
+}
+
+.tree ul li a.esmeralda-h {
+    background-position: -349px 8px;
+}
+
+.tree ul li a.esmeralda-m {
+    background-position: -349px -73px;
+}
+
+.diamante {
+    color: #64A4D4;
+}
+
+.tree ul li a.diamante-h {
+    background-position: -427px 8px;
+}
+
+.tree ul li a.diamante-m {
+    background-position: -427px -73px;
+}
+
+.red.diamond {
+    color: #EA5145;
+}
+
+.tree ul li a.red-diamond-h {
+    background-position: -496px 3px;
+}
+
+.tree ul li a.red-diamond-m {
+    background-position: -496px -80px;
+}
+
+.blue.diamond {
+    color: #145381;
+}
+
+.tree ul li a.blue-diamond-h {
+    background-position: -568px 3px;
+}
+
+.tree ul li a.blue-diamond-m {
+    background-position: -568px -80px;
+}
+
+.black.diamond {
+    color: #222123;
+}
+
+.tree ul li a.black-diamond-h {
+    background-position: -640px 3px;
+}
+
+.tree ul li a.black-diamond-m {
+    background-position: -640px -80px;
+}
+
+
+
+/*TOOLTIP - REDE*/
+
+.tooltip {
+    background-color: #FFF;
+    border-radius: 4px;
+    border: 10px solid #999999;
+}

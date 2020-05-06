@@ -1,0 +1,96 @@
+/* CSS for Cadastro Page */
+
+#content {
+}
+#content .home-block {
+    padding-top:25px;
+}
+#content .home-block h1 {
+    font-family:Calibri;
+    font-size:2.5EM;
+    color:#f03f37;
+    text-transform:uppercase;
+}
+#content .home-form {
+    margin-top:23px;
+}
+#content .home-form span {
+    font-family:Calibri;
+    font-size:18px;
+    color:#656868;
+    margin-top:10px;
+    display:block;
+}
+#content .home-form .id-conta {
+    width:400px;
+}
+#content .home-form .nome {
+    width:400px;
+}
+#content .home-form .telefone {
+    display:inline;
+}
+#content .home-form .ddd-celular {
+    width:40px;
+    margin-right:10px;
+    border-radius: 14px;
+}
+#content .home-form .celular {
+    width:180px;
+}
+#content .home-form .email {
+    width:400px;
+    display:block;
+}
+#content .home-form .cpf_cnpj {
+    width:400px;
+    display:block;
+}
+#content .home-form input[type=text] {
+    font-family:Calibri;
+    font-size:18px;
+    color:#656868;
+    margin-top:5px;
+    border:0px none;
+    padding:5px;
+    -moz-border-radius:14px; /* Firefox */
+    -webkit-border-radius: 14px; /* Safari, Chrome */
+    -khtml-border-radius: 14px; /* KHTML */
+    border-radius: 14px; /* CSS3 */
+}
+#content .home-form .acao {
+    display:inline;
+}
+
+#content input[type=radio].css-checkbox {
+    display:none;
+}
+#content input[type=radio].css-checkbox + label.css-label {
+    padding-left:21px;
+    margin-top:22px;
+    margin-bottom:15px;
+    height:16px; 
+    display:inline-block;
+    line-height:16px;
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    font-size:16px;
+    vertical-align:middle;
+    cursor:pointer;
+    font-family:Calibri;
+    font-size:18px;
+    color:#656868;
+    margin-right:10px;
+}
+#content input[type=radio].css-checkbox:checked + label.css-label {
+	background-position:0 -16px;
+}
+#content label.css-label {
+	background-image:url(../img/cadastro-radio.png);
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+}

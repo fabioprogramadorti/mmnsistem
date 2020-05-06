@@ -1,0 +1,183 @@
+/* CSS for Home Page */
+
+#content {
+}
+
+    #content .home-block {
+        padding-top: 25px;
+    }
+
+        #content .home-block h1 {
+            font-family: Calibri;
+            font-size: 2.5EM;
+            color: #f03f37;
+            text-transform: uppercase;
+        }
+
+    #content .home-form {
+        margin-top: 23px;
+    }
+
+    #content .rounded-table {
+        -moz-border-radius: 12px; /* Firefox */
+        -webkit-border-radius: 12px; /* Safari, Chrome */
+        -khtml-border-radius: 12px; /* KHTML */
+        border-radius: 12px; /* CSS3 */
+        margin-top: 40px;
+        width: 1003px;
+        background-color: #ffffff;
+    }
+
+    #content table {
+        /*width:748px;*/ /*width modificado para adequação de tabela*/
+        border: none !important;
+    }
+
+    #content table, #content tr, #content td {
+        font-family: Calibri;
+        color: #656868;
+    }
+
+    #content td {
+        padding: 7px;
+    }
+
+    #content .td-h1 {
+        font-size: 1.9em;
+        padding-left: 18px;
+    }
+
+    #content .td-h2 {
+        font-size: 1.1em;
+        text-align: center;
+        border-left: 1px solid #666666;
+    }
+
+    #content .td-h3-1, #content .td-h3-2 {
+        font-size: 1.1em;
+        text-align: center;
+        border-bottom: 1px solid #666666;
+    }
+
+    #content .td-h3-1 {
+        border-left: 1px solid #666666;
+    }
+
+    #content .td-img {
+        padding-left: 18px;
+        width: 60px;
+        vertical-align: middle;
+    }
+
+    #content .td-th4-1, #content .td-th4-1-c, #content .td-th4-1-c-wb {
+        color: #f0c11b;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    #content .td-th4-1-c, #content .td-th4-1-c-wb {
+        text-align: center;
+    }
+
+    #content .td-th4-1-c-wb {
+        border-left: 1px solid #666666;
+    }
+
+    #content .td-th4-2, #content .td-th4-2-c, #content .td-th4-2-c-wb {
+        color: #31ae26;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    #content .td-th4-2-c, #content .td-th4-2-c-wb {
+        text-align: center;
+    }
+
+    #content .td-th4-2-c-wb {
+        border-left: 1px solid #666666;
+    }
+
+    #content .td-th4-3, #content .td-th4-3-c, #content .td-th4-3-c-wb {
+        color: #ec6921;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    #content .td-th4-3-c, #content .td-th4-3-c-wb {
+        text-align: center;
+    }
+
+    #content .td-th4-3-c-wb {
+        border-left: 1px solid #666666;
+    }
+
+    #content .td-th4-4, #content .td-th4-4-c, #content .td-th4-4-c-wb {
+        color: #3f7ea9;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    #content .td-th4-4-c, #content .td-th4-4-c-wb {
+        text-align: center;
+    }
+
+    #content .td-th4-4-c-wb {
+        border-left: 1px solid #666666;
+    }
+
+    #content .table-pedido {
+        padding-top: 10px;
+    }
+
+    #content .pedido-title {
+        font-family: Calibri;
+        color: #656868;
+        font-size: 1.9em;
+        padding-left: 18px;
+    }
+
+    #content .pedido-info {
+        font-family: Calibri;
+        color: #656868;
+        font-size: 1.0em;
+        padding-left: 10px;
+    }
+
+    #content .table-pedido {
+        margin-top: 12px;
+    }
+
+    #content .td-ped-img {
+        width: 44px;
+        padding-left: 18px;
+    }
+
+    #content .td-ped-th {
+        color: #f43e3a;
+        font-weight: bold;
+        font-size: 1.1em;
+        text-transform: uppercase;
+        padding-left: 0px;
+        padding-top: 2px;
+    }
+
+    #content .td-ped-item {
+        text-align: center;
+    }
+
+    #content #ped-detalhe {
+        width: 600px;
+    }
+
+    #content .td-ped-det {
+        padding: 2px;
+    }
+
+    #content .td-ped-acao {
+        text-align: center;
+    }
+
+    #content .td-ped-det-tit {
+        color: #f43e3a;
+        padding-left: 42px;
+    }

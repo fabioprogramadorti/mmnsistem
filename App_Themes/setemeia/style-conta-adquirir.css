@@ -1,0 +1,77 @@
+/* CSS for Conta-Adquirir Page */
+
+#content {
+}
+#content .home-block {
+    padding-top:25px;
+}
+#content .home-block h1 {
+    font-family:Calibri;
+    font-size:2.5EM;
+    color:#f03f37;
+    text-transform:uppercase;
+}
+#content .home-form {
+    margin-top:23px;
+}
+#content .rounded-table {
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    margin-top:40px;
+    width:850px;
+    background-color:#ffffff;
+}
+#content table {
+    width:850px;
+    border: none !important;
+}
+#content table, #content tr, #content td {
+    font-family:Calibri;
+    color:#656868;
+}
+#content .td-img-1 {
+    padding-left:20px;
+    width:80px;
+    vertical-align:middle;
+}
+#content .td-img-2 {
+    vertical-align:middle;
+}
+#content .td-th-1, #content .td-th-1-c {
+    font-weight:bold;
+    text-transform:uppercase;
+    text-align:center
+}
+#content .td-th-1-c {
+    text-align:center;
+}
+#content .td-th-2-c {
+    text-align:center;
+}
+#content .td-th-3-c {
+    text-align:center;
+}
+#content .td-th-4-c {
+    text-align:center;
+}
+#content .table-planos {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+#content .planos-title {
+    font-family:Calibri;
+    color:#656868;
+    font-size:1.9em;
+    padding-left:18px;
+}
+#content .planos-info {
+    font-family:Calibri;
+    color:#656868;
+    font-size:1.0em;
+    padding-left:10px;
+}
+#center {
+    text-align:center;
+}

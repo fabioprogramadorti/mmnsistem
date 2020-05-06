@@ -1,0 +1,95 @@
+/* CSS for Minha Conta Page */
+
+#content {
+    width:100%;
+}
+#content .conta-block {
+    padding-top:25px;
+    width:100%;
+}
+#content .conta-block h1 {
+    font-family:Calibri;
+    font-size:2.5EM;
+    color:#f03f37;
+    text-transform:uppercase;
+}
+#content .conta-form {
+    margin-top:23px;
+}
+#content .rounded-table {
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    /*margin-top:40px;*/ /*Modificado para adequação de tabela*/
+    margin-top:70px;
+    width:60%;
+    background-color:#ffffff;
+    float:left;
+}
+#content table {
+    width:100%;
+    border: none !important;
+}
+#content table, #content tr, #content td {
+    font-family:Calibri;
+    color:#656868;
+}
+#content .td-img {
+    vertical-align:middle;
+    text-align:center;
+}
+#content .tr-header {
+    margin-bottom:5px;
+}
+#content .td-th-c {
+    text-align:center;
+}
+#content .td-st-ativo {
+    color:#ee4035;
+}
+#content .td-st-cancel {
+    color:#831d18;
+}
+#content .table-planos {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+#content .planos-title {
+    font-family:Calibri;
+    color:#656868;
+    font-size:1.9em;
+    padding-left:18px;
+}
+#content .planos-info {
+    font-family:Calibri;
+    color:#656868;
+    font-size:1.0em;
+    padding-left:10px;
+}
+#content .table-legenda {
+    width:20%;
+    margin-top:60px;
+    margin-left:5px;
+    float:left;
+}
+#content .td-th-1 {
+    color:#f0c11b;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+#content .td-th-2 {
+    color:#31ae26;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+#content .td-th-3 {
+    color:#ec6921;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+#content .td-th-4 {
+    color:#3f7ea9;
+    font-weight:bold;
+    text-transform:uppercase;
+}

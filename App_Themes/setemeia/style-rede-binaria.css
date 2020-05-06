@@ -1,0 +1,132 @@
+/* CSS for Rede Binária Page */
+
+#content {
+    width:100%;
+}
+#content .conta-block {
+    padding-top:25px;
+    width:100%;
+}
+#content .conta-block h1 {
+    font-family:Calibri;
+    font-size:2.5EM;
+    color:#f03f37;
+    text-transform:uppercase;
+}
+#content .conta-form {
+    margin-top:23px;
+}
+#content .rounded-table {
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    margin-top:40px;
+    width:80%;
+    min-height:300px;
+    background-color:#ffffff;
+    float:left;
+}
+#content table {
+    width:100%;
+    border: none !important;
+}
+#content table, #content tr, #content td {
+    font-family:Calibri;
+    color:#656868;
+}
+#content .table-rede {
+    width:100%;
+}
+#content .td-item {
+    width:100px;
+    vertical-align:top;
+    text-align:center;
+}
+#content .v-top {
+    vertical-align:top;
+}
+#content .td-bottom {
+    border-bottom:1px solid #000;
+    width:20%;
+}
+#content .td-right {
+    border-right:1px solid #000;
+}
+#content .td-left {
+    border-left:1px solid #000;
+}
+#content .td-space-top {
+    width:21%;
+}
+#content .td-space {
+    width:20%;
+}
+
+/* Info - Posição Indisponivel */
+#content #info-vago {
+    width:160px;
+    height:50px;
+    background-image:url("../img/busca-seta.png");
+    background-position:32px 0px;
+    background-repeat:no-repeat;
+    position:fixed;
+    /* right:16.15%; */
+    margin-top:-10px;
+}
+#content #info-vago .rounded-info-vago {
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    background-color:#e5e5e5;
+    margin-top:25px;
+    height:45px;
+    padding:12px 10px 10px 10px;
+}
+#content #info-vago span {
+    font-family:Calibri;
+    font-size:16px;
+    color:#656868;
+}
+
+/* Info - Posição Completa */
+#content #info-completa {
+    width:250px;
+    background-image:url("../img/busca-seta.png");
+    background-position:32px 0px;
+    background-repeat:no-repeat;
+    position:fixed;
+    margin-top:-10px;
+}
+#content #info-completa .rounded-info-completa {
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    background-color:#e5e5e5;
+    margin-top:25px;
+    height:140px;
+    padding:12px 10px 10px 10px;
+}
+#content #info-completa span {
+    font-family:Calibri;
+    font-size:16px;
+    color:#656868;
+}
+#content #info-completa .pln-telespectador {
+    color:#f0c11b;
+    font-weight:bold;
+    text-transform:uppercase;
+}   
+ #content .rounded-table {
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    margin-top:40px;
+    width:80%;
+    min-height:300px;
+    background-color:#ffffff;
+    float:left;
+}

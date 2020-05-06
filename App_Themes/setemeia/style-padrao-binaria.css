@@ -1,0 +1,92 @@
+/* CSS for Padrão do Binário Page */
+
+#content {
+    width:100%;
+}
+#content .padrao-block {
+    padding-top:25px;
+    width:100%;
+}
+#content .padrao-block h1 {
+    font-family:Calibri;
+    font-size:2.5EM;
+    color:#f03f37;
+    text-transform:uppercase;
+}
+#content .padrao-form {
+    margin-top:23px;
+}
+#content .rounded-table {
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    margin-top:40px;
+    width:80%;
+    min-height:300px;
+    background-color:#ffffff;
+    float:left;
+}
+#content table {
+    width:100%;
+    border: none !important;
+}
+#content table, #content tr, #content td {
+    font-family:Calibri;
+    color:#656868;
+}
+#content .table-padrao {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+#content input[type=radio].css-checkbox {
+    display:none;
+}
+#content input[type=radio].css-checkbox + label.css-label {
+    padding-left:21px;
+    margin-top:1px;
+    margin-bottom:15px;
+    height:16px; 
+    display:inline-block;
+    line-height:16px;
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    font-size:16px;
+    vertical-align:middle;
+    cursor:pointer;
+    font-family:Calibri;
+    font-size:18px;
+    color:#656868;
+    margin-right:10px;
+}
+#content input[type=radio].css-checkbox:checked + label.css-label {
+	background-position:0 -16px;
+}
+#content label.css-label {
+	background-image:url(../img/cadastro-radio.png);
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+}
+    .head{
+    font-family:Calibri;
+    font-size:2.5EM;
+    color:#f03f37;
+    text-transform:uppercase;
+    padding-top: 48px;
+    }
+    #content .rounded-table {
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    margin-top:40px;
+    width:80%;
+    min-height:300px;
+    background-color:#ffffff;
+    float:left;
+}

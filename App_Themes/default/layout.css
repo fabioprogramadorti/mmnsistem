@@ -1,0 +1,254 @@
+﻿.barra_lateral_esquerda {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    border-right: 1px solid #B6BFC4;
+}
+
+* {
+    margin: 0;
+    border-spacing: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+    a :visited {
+        color: inherit;
+    }
+
+body {
+    font-family: Arial, Tahoma, Calibri, sans-serif !important;
+    line-height: 1 !important;
+    font-size: 13px !important;
+    color: #656868 !important;
+    display: block !important;
+}
+
+header {
+    height: 86px;
+    background: transparent url('../../Image/bg-header.gif') repeat scroll 0% 0%;
+    z-index: 5000;
+    position: relative;
+    margin: 0px auto;
+}
+
+/*.logo {
+    width: 138px;
+    height: 84px;
+    display: block;
+    float: left;
+}*/
+
+/*.logoVooTxt {
+    position: relative;
+    left: 15px;
+    top: 18px;
+}*/
+
+.login {
+    display: block;
+    float: left;
+    margin-top: 27px;
+    margin-right: 5px;
+}
+
+    .login input[type="text"] {
+        border-radius: 4px;
+        background: none repeat scroll 0% 0% #FFF;
+        margin: 0px 7px 20px 0px;
+        padding: 5px;
+        border-width: 1px;
+        border-style: solid;
+        -moz-border-top-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        border-image: none;
+        border-color: #8C9399 #B6BFC4 #B6BFC4;
+        color: #68727B;
+        font-family: Arial,sans-serif;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15) inset, 0px 1px 0px #FFF;
+    }
+
+    .login input[type="password"] {
+        border-radius: 4px;
+        background: none repeat scroll 0% 0% #FFF;
+        margin: 0px 7px 20px 0px;
+        padding: 5px;
+        border-width: 1px;
+        border-style: solid;
+        -moz-border-top-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        border-image: none;
+        border-color: #8C9399 #B6BFC4 #B6BFC4;
+        color: #68727B;
+        font-family: Arial,sans-serif;
+        /*height: 17px;*/
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15) inset, 0px 1px 0px #FFF;
+    }
+
+    .login .loginFields {
+        float: left;
+    }
+
+    .login .loginBtn {
+        margin: -1px 5px 0px 2px;
+        width: 250px;
+        height: 51px;
+    }
+
+footer {
+    z-index: 999;
+    display: block;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2em 0 2em 0;
+    text-align: center;
+    margin-top: 3em;
+}
+
+a {
+    text-decoration: none;
+}
+
+    a :visited {
+        text-decoration: none;
+    }
+
+h1 {
+    font-family: Calibri;
+    font-size: 2.5EM;
+    color: #f03f37;
+}
+
+h2 {
+    font-family: Calibri;
+    color: #656868;
+    font-size: 1.9em;
+    padding-left: 18px;
+}
+
+.campo-10 {
+    float: left;
+    width: 10%;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.campo-20 {
+    float: left;
+    width: 20%;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.campo-30 {
+    float: left;
+    width: 30%;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.campo-40 {
+    float: left;
+    width: 40%;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.campo-50 {
+    float: left;
+    width: 50%;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.campo-60 {
+    float: left;
+    width: 60%;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.campo-70 {
+    float: left;
+    width: 70%;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.campo-80 {
+    float: left;
+    width: 80%;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.campo-90 {
+    float: left;
+    width: 90%;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.campo-100 {
+    float: left;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 50px;
+}
+
+.campo-obrigatorio {
+    padding: 0 0 0 1em;
+    color: red;
+}
+
+.label {
+    clear: both;
+    text-align: left;
+    padding: .7em 1em 0em 2.1em;
+    width: 1003px;
+    /*padding-left: 40px;*/
+}
+
+.label_campanha {
+    padding-left: 0px;
+    padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.text {
+    clear: both;
+    text-align: left;
+    padding: .4em 1em .4em 2.1em;
+}
+
+.contas {
+    float: right;
+}
+
+.login-img {
+    position: fixed;
+    background-image: url("../img/login-h.png");
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    width: 361px;
+    height: 389px;
+    right: 10%;
+    bottom: 0px;
+    z-index: 90;
+}
+
+/*.table_conta {
+    display: inline-block;
+}*/

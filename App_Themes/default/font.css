@@ -1,0 +1,20 @@
+﻿@font-face {
+    font-family: 'Variane';
+    src: url('VarianeScript.ttf');
+}
+
+.font-logo {
+    font-family: Variane !important;
+}
+
+.shadow-branco {
+    text-shadow: 2px 2px rgba(255, 255, 255, 0.70);
+}
+
+.font-logo-vermelha {
+    color: #db5252 !important;
+}
+
+.font-logo-azul {
+    color: #2b3e51 !important;
+}

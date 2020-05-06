@@ -1,0 +1,9 @@
+﻿.icone {
+    width: 7px;
+    height: 9px;
+    background-image: url('../../Image/ui-icons.png');
+}
+
+.cadeado-fechado {
+    background-position: 197px 100px;
+}

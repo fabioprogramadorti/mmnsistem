@@ -1,0 +1,152 @@
+/* CSS for Rede Linear Page */
+
+#content {
+    width:100%;
+}
+#content .rede-block {
+    padding-top:25px;
+    width:100%;
+}
+#content .rede-block h1 {
+    font-family:Calibri;
+    font-size:2.5EM;
+    color:#f03f37;
+    text-transform:uppercase;
+}
+#content .rede-form {
+    margin-top:23px;
+}
+#content .rede-busca {
+    float:right;
+    height:30px;
+    margin-top:10px;
+    margin-right:20%;
+    width:50%;
+    text-align:right;
+}
+#content .rounded-table {
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    margin-top:10px;
+    width:80%;
+    background-color:#ffffff;
+    float:left;
+}
+#content table {
+    width:100%;
+    border: none !important;
+}
+#content table, #content tr, #content td {
+    font-family:Calibri;
+    color:#656868;
+}
+#content .table-rede {
+    padding:10px;
+}
+#content .td-img {
+    width:30px;
+    padding-top:2px;
+    vertical-align:middle;
+}
+#content .table-item {
+    width:100%;
+}
+#content .td-item {
+    width:80%;
+    padding-top:10px;
+}
+#content .td-ativo {
+    color:#ef4138;
+}
+
+/* Busca por nome */
+#content #busca-nome {
+    width:290px;
+    height:115px;
+    background-image:url("../img/busca-seta.png");
+    background-position:32px 0px;
+    background-repeat:no-repeat;
+    position:fixed;
+    right:16.15%;
+    margin-top:34px;
+}
+#content #busca-nome .rounded-busca {
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    background-color:#e5e5e5;
+    margin-top:25px;
+    height:80px;
+    padding:12px 10px 10px 10px;
+}
+#content #busca-nome span {
+    font-family:Calibri;
+    font-size:16px;
+    color:#656868;
+}
+#content #busca-nome input[type=text] {
+    font-family:Calibri;
+    font-size:18px;
+    color:#656868;
+    border:0px none;
+    padding:5px;
+    margin-top:5px;
+    width:230px;
+    -moz-border-radius:14px; /* Firefox */
+    -webkit-border-radius: 14px; /* Safari, Chrome */
+    -khtml-border-radius: 14px; /* KHTML */
+    border-radius: 14px; /* CSS3 */
+}
+#content #busca-nome .btn-buscar img {
+    margin-top:5px;
+    position:fixed;
+    margin-left:10px;
+}
+
+/* Busca por e-mail */
+#content #busca-email {
+    width:290px;
+    height:115px;
+    background-image:url("../img/busca-seta.png");
+    background-position:165px 0px;
+    background-repeat:no-repeat;
+    position:fixed;
+    right:16.15%;
+    margin-top:34px;
+}
+#content #busca-email .rounded-busca {
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    background-color:#e5e5e5;
+    margin-top:25px;
+    height:80px;
+    padding:12px 10px 10px 10px;
+}
+#content #busca-email span {
+    font-family:Calibri;
+    font-size:16px;
+    color:#656868;
+}
+#content #busca-email input[type=text] {
+    font-family:Calibri;
+    font-size:18px;
+    color:#656868;
+    border:0px none;
+    padding:5px;
+    margin-top:5px;
+    width:230px;
+    -moz-border-radius:14px; /* Firefox */
+    -webkit-border-radius: 14px; /* Safari, Chrome */
+    -khtml-border-radius: 14px; /* KHTML */
+    border-radius: 14px; /* CSS3 */
+}
+#content #busca-email .btn-buscar img {
+    margin-top:5px;
+    position:fixed;
+    margin-left:10px;
+}

@@ -1,0 +1,89 @@
+/* CSS for Financeiro Page */
+
+#content {
+    width:100%;
+}
+#content .financeiro-block {
+    padding-top:25px;
+    width:100%;
+}
+#content .financeiro-block h1 {
+    font-family:Calibri;
+    font-size:2.5EM;
+    color:#f03f37;
+    text-transform:uppercase;
+}
+#content .financeiro-form {
+    margin-top:23px;
+}
+#content .rounded-table {
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    margin-top:40px;
+    width:80%;
+    background-color:#ffffff;
+}
+#content table {
+    width:95%;
+    border: none !important;
+    margin-left:30px;
+    margin-top:10px;
+}
+#content table, #content tr, #content td {
+    font-family:Calibri;
+    font-size:1.05em;
+    color:#656868;
+    padding:5px;
+}
+#content .table-financeiro {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+#content .rounded-table h2 {
+    font-family:Calibri;
+    font-size:1.8EM;
+    font-weight:lighter;
+    color:#ffffff;
+    -moz-border-radius:12px; /* Firefox */
+    -webkit-border-radius: 12px; /* Safari, Chrome */
+    -khtml-border-radius: 12px; /* KHTML */
+    border-radius: 12px; /* CSS3 */
+    margin-top:-10px;
+    padding-left:25px;
+}
+#content .h2-entrada {
+    background-color:#4fb84e;
+}
+#content .th-ent-l {
+    color:#4fb84e;
+}
+#content .th-ent-c {
+    color:#4fb84e;
+    text-align:center;
+}
+#content .td-ent-l {
+    color:#656868;
+}
+#content .td-ent-c {
+    color:#656868;
+    text-align:center;
+}
+#content .h2-saida {
+    background-color:#ef5b59;
+}
+#content .th-sai-l {
+    color:#ef5b59;
+}
+#content .th-sai-c {
+    color:#ef5b59;
+    text-align:center;
+}
+#content .td-sai-l {
+    color:#656868;
+}
+#content .td-sai-c {
+    color:#656868;
+    text-align:center;
+}

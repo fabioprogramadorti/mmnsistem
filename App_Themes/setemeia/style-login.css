@@ -1,0 +1,42 @@
+#content {
+    padding-left: 15%;
+}
+
+    #content .login-block {
+        padding-top: 62px;
+    }
+
+        #content .login-block h1 {
+            font-family: Calibri;
+            font-size: 2.5EM;
+            color: #f03f37;
+            text-transform: uppercase;
+        }
+
+    #content .login-form {
+        margin-top: 23px;
+    }
+
+        #content .login-form span {
+            font-family: Calibri;
+            font-size: 18px;
+            color: #656868;
+            margin-top: 10px;
+            display: block;
+        }
+
+    #content .btn-login {
+        padding-left: 198px;
+    }
+
+    #content .login-img {
+        position: fixed;
+        background-image: url('../../../Image/img/login-h.png');
+        background-position: right bottom;
+        background-repeat: no-repeat;
+        width: 361px;
+        height: 389px;
+        right: 10%;
+        bottom: 0px;
+        z-index: 90;
+    }
